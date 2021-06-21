@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import homeIcon from '../assets/icons/home.svg'
 import rocketIcon from '../assets/icons/rocket.svg'
@@ -7,11 +8,23 @@ import resourceIcon from '../assets/icons/resource.svg'
 
 const Sidebar = () => {
     return (
-        <div className="bg-ehite rounded-xl mx-2 w-20 flex flex-col justify-center items-center">
-            <img src={homeIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded"/>
-            <img src={rocketIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
-            <img src={discussIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
-            <img src={resourceIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
+        <div className="fixed sticky bg-ehite rounded-xl mx-2 w-20 flex flex-col justify-center items-center">
+
+            <Link to="/">
+                <img src={homeIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
+            </Link>
+
+            <Link to="/showcase-feedback">
+                <img src={rocketIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
+            </Link>
+
+            <Link to="/discussions">
+                <img src={discussIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
+            </Link>
+
+            <Link to="/resources">
+                <img src={resourceIcon} alt="Home" className="w-14 h-14 m-2 hover:bg-purple-100 p-2 rounded" />
+            </Link>
 
         </div>
     );
