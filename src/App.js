@@ -21,7 +21,7 @@ const App = () => {
         <Sidebar />
 
 
-        <div className="w-11/12 ">
+        <div className="w-11/12 border-l-2 px-4">
           <BrowserRouter>
             <Route exact path="/" component={Home} />
             <Route exact path="/showcase-feedback" component={Feedback} />
