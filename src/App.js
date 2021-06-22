@@ -16,12 +16,16 @@ const App = () => {
     <div className=" px-20">
 
 
-        <Router>
-        <Navbar />
-              <div className="flex flex-row">
+      <Router>
+        <div className="sticky top-0 z-10">
+          <Navbar />
+          </div>
+        <div className="flex flex-row ">
 
+          <div className="sticky top-20  ">
+            <Sidebar />
 
-          <Sidebar />
+          </div>
 
           <div className="w-full border-l-2 px-4 ">
             <Route exact path="/" component={Home} />
@@ -31,9 +35,9 @@ const App = () => {
             <Route exact path="/discussions" component={Discussions} />
             <Route exact path="/resources" component={Resources} />
           </div>
-      </div>
+        </div>
 
-        </Router>
+      </Router>
 
 
     </div>
