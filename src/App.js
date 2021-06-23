@@ -13,16 +13,16 @@ import Discussions from './pages/Discussions';
 
 const App = () => {
   return (
-    <div className=" px-20">
+    <div className=" md:px-20">
 
 
       <Router>
         <div className="sticky top-0 z-10">
           <Navbar />
           </div>
-        <div className="flex flex-row ">
+        <div className="flex flex-row">
 
-          <div className="sticky top-20  ">
+          <div className="sticky top-20">
             <Sidebar />
 
           </div>
