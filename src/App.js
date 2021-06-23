@@ -5,6 +5,8 @@ import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import Home from './pages/Home';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
+
 import Feedback from './pages/Feedback';
 import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
@@ -19,7 +21,7 @@ const App = () => {
       <Router>
         <div className="sticky top-0 z-10">
           <Navbar />
-          </div>
+        </div>
         <div className="flex flex-row">
 
           <div className="sticky top-20">
@@ -30,6 +32,8 @@ const App = () => {
           <div className="w-full border-l-2 px-4 ">
             <Route exact path="/" component={Home} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+
 
             <Route exact path="/showcase-feedback" component={Feedback} />
             <Route exact path="/discussions" component={Discussions} />
