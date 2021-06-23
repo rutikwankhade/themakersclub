@@ -2,18 +2,26 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import {Link} from 'react-router-dom'
 
+
 import joinImg from '../assets/images/join.png'
-const Signup = () => {
+import {connect} from 'react-redux'
+import {  register as signup } from '../actions/auth';
+
+
+const Signup = ({signup}) => {
 
     const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
 
     const handleSignup = data => {
+
+        const {username, email, password} = data
         if (data.password !== data.confirmPassword) {
             setError('Passwords didnt match.')
 
         }
         console.log(data);
+        signup({ username, email, password });
     }
 
 
@@ -34,7 +42,7 @@ const Signup = () => {
                                     type="text"
                                     placeholder="Name"
                                     className="text-lg m-2 bg-gray-100 py-2 px-4 w-full rounded"
-                                    {...register("name")}
+                                    {...register("username")}
                                 />
 
                                 <input
@@ -78,4 +86,7 @@ const Signup = () => {
     );
 }
 
-export default Signup;
+export default connect(
+    null,
+    {signup}
+)(Signup) ;

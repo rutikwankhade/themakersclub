@@ -1,6 +1,5 @@
 {
   "name": "cra-tailwind-starter",
-  "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +8,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
     "autoprefixer": "^9.8.6",
+    "axios": "^0.21.1",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -45,5 +45,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+    "proxy": "http://localhost:5000"
+
 }
