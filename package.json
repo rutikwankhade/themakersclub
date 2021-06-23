@@ -1,5 +1,6 @@
 {
   "name": "cra-tailwind-starter",
+  "proxy": "http://localhost:5000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,8 +13,12 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.9.0",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "web-vitals": "^0.2.4"
   },

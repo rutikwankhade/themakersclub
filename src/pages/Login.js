@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import {Link} from 'react-router-dom'
 
 import joinImg from '../assets/images/join.png'
 const Login = () => {
 
-    const [error, setError] = useState('')
+    // const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
 
    
@@ -26,7 +26,7 @@ const Login = () => {
                                 className=" bg-white md:w-5/12 p-10 md:h-5/6 md:my-10 mx-10 flex flex-col justify-center border-2  rounded-md">
                                 <h1 className="text-2xl font-semibold">👋 Welcome back</h1>
 
-                                <p className="text-red-300 py-2 text-center">{error}</p>
+                                {/* <p className="text-red-300 py-2 text-center">{error}</p> */}
 
 
 
