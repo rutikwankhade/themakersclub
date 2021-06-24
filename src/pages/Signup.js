@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 
 import joinImg from '../assets/images/join.png'
@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 import {  register as signup } from '../actions/auth';
 
 
-const Signup = ({signup}) => {
+const Signup = ({signup, isAuthenticated}) => {
 
     const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
@@ -22,6 +22,10 @@ const Signup = ({signup}) => {
         }
         console.log(data);
         signup({ username, email, password });
+    }
+
+    if (isAuthenticated) {
+        return <Redirect to="/showcase-feedback"/>
     }
 
 
@@ -86,7 +90,11 @@ const Signup = ({signup}) => {
     );
 }
 
+const mapStateToProps = state => ({
+    isAuthenticated: state.authReducer.isAuthenticated
+});
+
 export default connect(
-    null,
+    mapStateToProps,
     {signup}
 )(Signup) ;

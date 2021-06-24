@@ -1,17 +1,32 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import {Link} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types';
+
 
 import joinImg from '../assets/images/join.png'
-const Login = () => {
+import { connect } from 'react-redux'
+import { login } from '../actions/auth'
+
+
+const Login = ({ login, isAuthenticated }) => {
 
     // const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
 
-   
-     const handleLogin = data => {
+
+    const handleLogin = data => {
+        const { email, password } = data;
+        login(email, password);
         console.log(data);
     }
+
+  
+   
+if (isAuthenticated) {
+    return <Redirect to="/" />;
+}
+
 
 
     return (
@@ -21,7 +36,7 @@ const Login = () => {
 
                     <div className="flex md:flex-row flex-col ">
                         {
-                            
+
                             <form onSubmit={handleSubmit(handleLogin)}
                                 className=" bg-white md:w-5/12 p-10 md:h-5/6 md:my-10 mx-10 flex flex-col justify-center border-2  rounded-md">
                                 <h1 className="text-2xl font-semibold">👋 Welcome back</h1>
@@ -48,7 +63,7 @@ const Login = () => {
                                 <button
                                     type="submit"
                                     className="text-lg  w-full m-2 bg-indigo-400 hover:bg-indigo-500 font-semibold text-white px-6 py-2 rounded">Login</button>
-                                <Link to="/signup"  className="focus:outline-none text-center text-indigo-400 font-semibold mx-4">Don't have an account? Register</Link>
+                                <Link to="/signup" className="focus:outline-none text-center text-indigo-400 font-semibold mx-4">Don't have an account? Register</Link>
                             </form>
 
                         }
@@ -64,4 +79,18 @@ const Login = () => {
     );
 }
 
-export default Login;
+
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.authReducer.isAuthenticated
+});
+
+export default connect(
+    mapStateToProps,
+    { login }
+
+)(Login);
