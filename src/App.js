@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute from './components/routes/PrivateRoute'
 
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
@@ -59,7 +60,7 @@ const App = () => {
               <Route exact path="/discussions" component={Discussions} />
               <Route exact path="/resources" component={Resources} />
 
-                            <Route exact path="/post-discussion" component={PostNewDiscussion} />
+              <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
 
             </div>
           </div>
