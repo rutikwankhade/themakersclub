@@ -33,6 +33,7 @@ const Discussions = () => {
 
                 <div className="flex flex-col bg-gray-50 justify-center w-8/12 ">
 
+                  
                     <div className="border-2 p-6 rounded-md bg-white">
                         <h1 className="text-2xl font-semibold">What are tools required to start blogging?</h1>
                         <p className="text-xl p-2">I have been looking for resources that are really good for use in our database. share please your thoughts...</p>
@@ -49,8 +50,7 @@ const Discussions = () => {
                     </div>
 
 
-
-                     <div className="border-2 p-6 rounded-md bg-white">
+                    <div className="border-2 p-6 rounded-md bg-white">
                         <h1 className="text-2xl font-semibold">What are tools required to start blogging?</h1>
                         <p className="text-xl p-2">I have been looking for resources that are really good for use in our database. share please your thoughts...</p>
 
@@ -67,15 +67,15 @@ const Discussions = () => {
 
                 </div>
 
-                <div className="w-4/12">
-                    <div className="m-4 bg-purple-400 text-white rounded-full text-center p-2 text-2xl font-semibold">Start a discussion</div>
-                    
-                <div className=" sticky top-0  h-40 m-4 bg-pink-100 p-4 rounded border-l-8 border-pink-200">
-                    <h1 className="text-2xl font-semibold">Discussions</h1>
-                    <p className="text-lg py-2">Start a discuusion thread on a topic and invite people to share their thoughts and ideas.</p>
+                <div className="w-4/12 ">
+                    <div className="sticky top-20 m-4 bg-purple-400 text-white rounded-full text-center p-2 text-2xl font-semibold">Start a discussion</div>
+
+                    <div className=" sticky top-36 m-4 bg-pink-100 p-4 rounded border-l-8 border-pink-200">
+                        <h1 className="text-2xl font-semibold">Discussions</h1>
+                        <p className="text-lg py-2">Start a discuusion thread on a topic and invite people to share their thoughts and ideas.</p>
                     </div>
-                    
-                    </div>
+
+                </div>
 
 
 
