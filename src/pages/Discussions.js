@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import DiscussPostcard from '../components/DiscussPostCard';
 
 const Discussions = () => {
@@ -16,14 +17,15 @@ const Discussions = () => {
 
                 </div>
 
-                <div className="w-4/12 flex flex-col items-center ">
-                    <button className="  px-6 sticky cursor-pointer top-20 m-4 bg-purple-400 text-white rounded-full text-center p-2 text-2xl font-semibold">
-                        Start a discussion
-                    </button>
+                <div className="w-4/12 flex flex-col items-center">
+                    <Link to="/post-discussion" className="sticky top-20">
+                        <button className="px-6 cursor-pointer m-4 bg-purple-400 hover:bg-purple-500 focus:outline-none text-white rounded-full text-center p-2 text-2xl font-semibold">
+                            Start a discussion
+                        </button>
 
+                    </Link>
 
-
-                    <div className=" sticky top-36 m-4 bg-pink-100 p-4 rounded border-l-8 border-pink-200">
+                    <div className=" sticky top-40 m-4 bg-pink-100 p-4 rounded border-l-8 border-pink-200">
                         <h1 className="text-2xl font-semibold">Discussions</h1>
                         <p className="text-lg py-2">Start a discuusion thread on a topic and invite people to share their thoughts and ideas.</p>
                     </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 const PostNewDiscussion = () => {
     return (
-        <div className="">
+        <div className="bg-gray-50  px-10 py-4">
             
-            <div className="m-10 w-8/12 ">
+            <div className="w-10/12 bg-white p-6 px-10">
             <h1 className="text-2xl font-semibold my-4">Post a discussion</h1>
-            <div className="flex flex-col justify-center ">
+            <div className="flex flex-col  justify-center ">
                 <input
                     type="text"
                     placeholder="Ask a question or share something"
