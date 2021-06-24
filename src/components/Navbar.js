@@ -37,7 +37,7 @@ const Navbar = ({ isAuthenticated, userName }) => {
 
 const mapStateToProps = state => ({
     isAuthenticated: state.authReducer.isAuthenticated,
-    userName: state.authReducer.user.data[0].username
+    userName: state.authReducer.user && state.authReducer.user.data[0].username
 });
 
 export default connect(
