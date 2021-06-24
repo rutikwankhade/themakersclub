@@ -10,6 +10,8 @@ import Login from './pages/Login';
 import Feedback from './pages/Feedback';
 import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
+import PostNewDiscussion from './pages/PostNewDiscussion';
+
 
 //redux
 import { Provider } from 'react-redux';
@@ -56,6 +58,9 @@ const App = () => {
               <Route exact path="/showcase-feedback" component={Feedback} />
               <Route exact path="/discussions" component={Discussions} />
               <Route exact path="/resources" component={Resources} />
+
+                            <Route exact path="/post-discussion" component={PostNewDiscussion} />
+
             </div>
           </div>
 
