@@ -22,8 +22,8 @@ const PostNewDiscussion = ({ addDiscussPost }) => {
     return (
         <div className="bg-gray-50  px-10 py-4 ">
 
-            <div className="w-10/12 bg-white p-6 px-10">
-                <h1 className="text-2xl font-semibold my-4">Post a discussion</h1>
+            <div className="w-10/12 bg-white p-6 px-10 border-2 rounded">
+                <h1 className="text-2xl font-semibold my-4">Start a discussion</h1>
                 <form onSubmit={handleSubmit(handlePostSubmit)}
                     className="flex flex-col  justify-center"
                 >
@@ -35,7 +35,7 @@ const PostNewDiscussion = ({ addDiscussPost }) => {
 
                     />
                     <textarea
-                        placeholder="// Write in makdown"
+                        placeholder="// Start typing..."
                         className="px-6 p-2 rounded bg-gray-50 text-xl h-60 border-2 focus:outline-none m-2"
                         {...register("postText")}
 

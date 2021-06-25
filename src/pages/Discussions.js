@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getDiscussPosts } from '../actions/discussPost'
 import DiscussPostcard from '../components/DiscussPostCard';
 
-const Discussions = ({ getDiscussPosts, discussPost }) => {
+const Discussions = ({ getDiscussPosts, discussPosts }) => {
 
     useEffect(() => {
         getDiscussPosts()
@@ -17,11 +17,15 @@ const Discussions = ({ getDiscussPosts, discussPost }) => {
             <div className="bg-gray-50 p-2 rounded flex flex-row">
 
                 <div className="flex flex-col bg-gray-50 justify-center w-8/12 pb-20">
+                    {discussPosts.data && discussPosts.data.map(post => {
+                        return <DiscussPostcard post={post}/>
 
+    
+})}
+                    {/* <DiscussPostcard />
                     <DiscussPostcard />
                     <DiscussPostcard />
-                    <DiscussPostcard />
-                    <DiscussPostcard />
+                    <DiscussPostcard /> */}
 
                 </div>
 
@@ -47,7 +51,7 @@ const Discussions = ({ getDiscussPosts, discussPost }) => {
 
 
 const mapStateToProps = state => ({
-    discussPost: state
+    discussPosts: state.discussPostReducer.discussPosts
 })
 
 export default connect(mapStateToProps, { getDiscussPosts })(Discussions);
