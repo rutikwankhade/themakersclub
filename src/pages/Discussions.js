@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { getDiscussPosts } from '../actions/discussPost'
 import DiscussPostcard from '../components/DiscussPostCard';
 
-const Discussions = () => {
+const Discussions = ({ getDiscussPosts, discussPost }) => {
+
+    useEffect(() => {
+        getDiscussPosts()
+
+    }, [getDiscussPosts])
+
     return (
         <div className="bg-gray-50">
 
@@ -37,4 +45,9 @@ const Discussions = () => {
     );
 }
 
-export default Discussions;
+
+const mapStateToProps = state => ({
+    discussPost: state
+})
+
+export default connect(mapStateToProps, { getDiscussPosts })(Discussions);
