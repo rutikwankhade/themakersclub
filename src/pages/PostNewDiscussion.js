@@ -1,15 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
+import PropTypes from 'prop-types';
 
 
-const PostNewDiscussion = () => {
+import { addDiscussPost } from '../actions/discussPost';
+
+
+const PostNewDiscussion = ({ addDiscussPost }) => {
 
     const { register, handleSubmit } = useForm();
 
     const handlePostSubmit = (data) => {
-        const { postTitle, postText } = data;
 
         console.log(data);
+        addDiscussPost(data);
+        // addDiscussPost();
     }
 
 
@@ -45,5 +51,7 @@ const PostNewDiscussion = () => {
         </div>
     );
 }
-
-export default PostNewDiscussion;
+PostNewDiscussion.propTypes = {
+  addDiscussPost: PropTypes.func.isRequired
+};
+export default connect(null,{addDiscussPost})(PostNewDiscussion);
