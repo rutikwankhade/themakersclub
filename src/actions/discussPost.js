@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-import { GET_DISCUSS_POSTS, DISCUSS_POST_ERROR, ADD_DISCUSS_POST } from './types';
+import {
+    GET_DISCUSS_POSTS,
+    GET_DISCUSS_POST,
+    DISCUSS_POST_ERROR,
+    ADD_DISCUSS_POST
+} from './types';
 
 export const getDiscussPosts = () => async dispatch => {
-
 
     try {
 
@@ -13,6 +17,7 @@ export const getDiscussPosts = () => async dispatch => {
             type: GET_DISCUSS_POSTS,
             payload: res.data
         })
+
     } catch (err) {
         dispatch({
             type: DISCUSS_POST_ERROR,
@@ -23,6 +28,26 @@ export const getDiscussPosts = () => async dispatch => {
 }
 
 
+//GET SINGLE DISCUSS POST
+export const getDiscussPost = (id) => async dispatch => {
+
+    try {
+
+        const res = await axios.get(`https://themakersclub.herokuapp.com/api/discuss-posts/${id}`);
+
+        dispatch({
+            type: GET_DISCUSS_POST,
+            payload: res.data
+        })
+
+    } catch (err) {
+        dispatch({
+            type: DISCUSS_POST_ERROR,
+            payload: { msg: err }
+        })
+
+    }
+}
 
 
 //POST NEW DISCUSS POST
@@ -52,3 +77,7 @@ export const addDiscussPost = ({postTitle,postText}) => async dispatch => {
 
     }
 }
+
+
+
+

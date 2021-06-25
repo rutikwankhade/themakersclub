@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom'
 
 
 import { addDiscussPost } from '../actions/discussPost';
 
 
-const PostNewDiscussion = ({ addDiscussPost }) => {
+const PostNewDiscussion = ({ addDiscussPost, loading }) => {
+    const history = useHistory();
+
 
     const { register, handleSubmit } = useForm();
 
@@ -15,7 +18,14 @@ const PostNewDiscussion = ({ addDiscussPost }) => {
 
         console.log(data);
         addDiscussPost(data);
-        // addDiscussPost();
+
+        if (!loading) {
+            setTimeout(() => {
+                            history.push('/discussions')
+
+            },2000)
+        }
+
     }
 
 
@@ -51,7 +61,16 @@ const PostNewDiscussion = ({ addDiscussPost }) => {
         </div>
     );
 }
+
+
 PostNewDiscussion.propTypes = {
-  addDiscussPost: PropTypes.func.isRequired
+    addDiscussPost: PropTypes.func.isRequired
 };
-export default connect(null,{addDiscussPost})(PostNewDiscussion);
+
+
+
+const mapStateToProps = state => ({
+    loading: state.loading
+})
+
+export default connect(mapStateToProps, { addDiscussPost })(PostNewDiscussion);
