@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import CommentBox from '../components/CommentBox'
 import profileImg from '../assets/icons/profile.svg'
 
 import { connect } from 'react-redux';
@@ -10,19 +11,18 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, isAuthenticated, ma
 
     useEffect(() => {
         getDiscussPost(match.params.id);
-        console.log(discussPost)
-    }, []);
+    }, [getDiscussPost,match]);
 
 
     return (
         <div className="flex flex-col bg-gray-50 rounded">
 
 
-            <div className='m-10 w-8/12'>
+            <div className='m-10 w-8/12 mx-20'>
 
             <div className="p-10 border-2 border-t-8 rounded bg-white " >
 
-                <h1 className="text-3xl font-semibold text-purple-400">{discussPost && discussPost.data[0].postTitle}</h1>
+                <h1 className="text-3xl capitalize font-semibold text-purple-400">{discussPost && discussPost.data[0].postTitle}</h1>
                 <div className="flex my-4">
                     <img src={profileImg} alt="profile" className="h-8 w-8" />
                     <span className="text-xl text-gray-500 italic capitalize mx-2 ">{`Posted by ${discussPost && discussPost.data[0].userName}`}</span>
@@ -43,7 +43,7 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, isAuthenticated, ma
                     </Link>
                 </div> :
                 <div>
-                    share you rthoughts
+                <CommentBox/>
                 </div>
             }
 
