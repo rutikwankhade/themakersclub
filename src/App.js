@@ -12,6 +12,8 @@ import Feedback from './pages/Feedback';
 import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
 import PostNewDiscussion from './pages/PostNewDiscussion';
+import DiscussPost from './pages/DiscussPost';
+
 
 
 //redux
@@ -61,6 +63,7 @@ const App = () => {
               <Route exact path="/resources" component={Resources} />
 
               <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
+              <Route exact path="/discussions/:id" component={DiscussPost} />
 
             </div>
           </div>

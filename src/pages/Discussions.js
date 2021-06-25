@@ -18,15 +18,10 @@ const Discussions = ({ getDiscussPosts, discussPosts }) => {
 
                 <div className="flex flex-col bg-gray-50 justify-center w-8/12 pb-20">
                     {discussPosts.data && discussPosts.data.map(post => {
-                        return <DiscussPostcard post={post}/>
+                        return <Link to={`/discussions/${post.id}`}><DiscussPostcard post={post} /></Link>
 
-    
-})}
-                    {/* <DiscussPostcard />
-                    <DiscussPostcard />
-                    <DiscussPostcard />
-                    <DiscussPostcard /> */}
 
+                    })}
                 </div>
 
                 <div className="w-4/12 flex flex-col items-center">
