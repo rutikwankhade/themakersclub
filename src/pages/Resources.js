@@ -31,7 +31,7 @@ const Resources = () => {
                             <h1 className="text-4xl my-2 font-bold">Resources</h1>
                             <p className="text-xl ">A collection of resources shared by members of the makers club.</p>
                         </div>
-                        <img src={resourcesImg} alt="resources" className="w-80 h-40 ml-auto mr02 mt-auto mb-0" />
+                        <img src={resourcesImg} alt="resources" className="w-80 h-40 ml-auto mt-auto mb-0" />
 
                     </div>
 
