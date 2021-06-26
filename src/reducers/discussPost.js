@@ -2,7 +2,8 @@ import {
     GET_DISCUSS_POSTS,
     DISCUSS_POST_ERROR,
     ADD_DISCUSS_POST,
-    GET_DISCUSS_POST
+    GET_DISCUSS_POST,
+    ADD_DISCUSS_COMMENT
 } from "../actions/types";
 
 
@@ -50,6 +51,14 @@ export default function discussPostReducer(state = initialState, action) {
             return {
                 ...state,
                 discussPosts:[...state.discussPosts, payload] ,
+                loading: false
+                
+            };
+        
+        case ADD_DISCUSS_COMMENT:
+            return {
+                ...state,
+                discussPost:payload ,
                 loading: false
                 
             };
