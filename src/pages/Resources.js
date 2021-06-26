@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import resourcesImg from '../assets/images/resources.png'
 
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
-import downArrowIcon from '../assets/icons/down-arrow.svg'
 
 
 const Resources = () => {
@@ -14,8 +13,8 @@ const Resources = () => {
 
 
     useEffect(() => {
-        console.log(resourceCategory)
-    }, [resourceCategory])
+        console.log(resourceCategory, resourceUrl)
+    }, [resourceCategory, resourceUrl])
 
 
 
@@ -55,35 +54,58 @@ const Resources = () => {
 
                 </div>
 
+                <div className=" w-4/12 ">
 
-                <div className="sticky top-20 h-60 bg-white border-2 p-6 m-4  w-4/12">
-                    <input
-                        onChange={(e) => setResourceUrl(e.target.value)}
-                        placeholder="Share a resource url"
-                        className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
+                    <div className="sticky top-20 h-60 bg-white border-2 p-6 m-4  ">
+                        <input
+                            onChange={(e) => setResourceUrl(e.target.value)}
+                            placeholder="Share a resource url"
+                            className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
 
 
-                    <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
-                        <select
-                            onChange={(e) => setResourceCategory(e.target.value)}
-                            className="block w-full bg-white text-purple-500 font-semibold focus:outline-none"
-                        >
-                            <option>UI/UX</option>
-                            <option>CSS</option>
-                            <option>Tools</option>
-                            <option>Design</option>
-                            <option></option>
-                            <option>Web dev</option>
-                            <option>Marketing</option>
-                            <option>Writing</option>
-                            <option>Hackathons</option>
-                            <option>Others</option>
+                        <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
+                            <select
+                                onChange={(e) => setResourceCategory(e.target.value)}
+                                className="block w-full bg-white text-purple-500 font-semibold focus:outline-none"
+                            >
+                                <option>UI/UX</option>
+                                <option>CSS</option>
+                                <option>Tools</option>
+                                <option>Design</option>
+                                <option>Web dev</option>
+                                <option>Marketing</option>
+                                <option>Writing</option>
+                                <option>Hackathons</option>
+                                <option>Others</option>
 
-                        </select>
+                            </select>
+
+                        </div>
+                        <button className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Submit</button>
+                    </div>
+
+                    <div className="bg-white border p-6 m-4 sticky top-40">
+                        <h1 className="text-xl font-semibold">Categories</h1>
+                        <div className="flex flex-row flex-wrap py-4">
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">All</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">UI/UX</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Design</span>
+                            <span className=" cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">CSS</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Tools</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Web dev</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Marketing</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Writing</span>
+                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Hackathons</span>
+
+
+
+
+                        </div>
 
                     </div>
-                    <button className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Submit</button>
+
                 </div>
+
 
 
             </div>
