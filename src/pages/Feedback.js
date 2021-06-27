@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import ShowcasePostCard from '../components/ShowcasePostCard';
 
 import { connect } from 'react-redux'
 import { addShowcasePost, getAllShowcasePosts } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 
 
-const Feedback = ({ addShowcasePost,getAllShowcasePosts }) => {
+const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
 
     const [showcaseUrl, setShowcaseUrl] = useState('');
     const [showcaseText, setShowcaseText] = useState('');
 
     useEffect(() => {
         getAllShowcasePosts();
-    }, [])
+    }, [getAllShowcasePosts])
 
     const handleSubmit = () => {
 
@@ -36,11 +37,10 @@ const Feedback = ({ addShowcasePost,getAllShowcasePosts }) => {
                     </div>
 
                     <div>
-                        <div className="bg-white border-2 w-full p-10 "></div>
-                        <div className="bg-white border-2 w-full p-10 "></div>
-                        <div className="bg-white border-2 w-full p-10 "></div>
-                        <div className="bg-white border-2 w-full p-10 "></div>
-                        <div className="bg-white border-2 w-full p-10 "></div>
+                        {showcasePosts.data && showcasePosts.data.map(post => {
+                            return <ShowcasePostCard post={post}/>
+                        })}
+                      
 
 
                     </div>
@@ -73,6 +73,7 @@ const Feedback = ({ addShowcasePost,getAllShowcasePosts }) => {
 }
 
 const mapStateToProps = state => ({
+    showcasePosts:state.showcasePostsReducer.showcasePosts
 
 })
 
