@@ -16,7 +16,6 @@ const initialState = {
 }
 
 
-
 export default function showcasePostReducer( state = initialState, action) {
 
     const { type, payload } = action;

@@ -10,7 +10,7 @@ import {
 
 //add showcase post
 
-export const addShowcasePost = ({ showcaseUrl, showcaseText }) => async dispatch => {
+export const addShowcasePost = ({ showcaseUrl, showcaseText,showcaseTitle }) => async dispatch => {
 
     const config = {
         headers: {
@@ -18,7 +18,7 @@ export const addShowcasePost = ({ showcaseUrl, showcaseText }) => async dispatch
         }
     }
 
-    const body = JSON.stringify({ showcaseUrl, showcaseText })
+    const body = JSON.stringify({ showcaseUrl, showcaseText, showcaseTitle })
 
     try {
         const res = await axios.post('https://themakersclub.herokuapp.com/api/showcase', body, config);

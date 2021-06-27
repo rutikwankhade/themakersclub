@@ -6,10 +6,12 @@ import { addShowcasePost, getAllShowcasePosts } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 
 
-const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
+const Feedback = ({ showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
 
     const [showcaseUrl, setShowcaseUrl] = useState('');
     const [showcaseText, setShowcaseText] = useState('');
+    const [showcaseTitle, setShowcaseTitle] = useState('');
+
 
     useEffect(() => {
         getAllShowcasePosts();
@@ -18,7 +20,7 @@ const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
     const handleSubmit = () => {
 
         console.log(showcaseUrl, showcaseText)
-        addShowcasePost({ showcaseUrl, showcaseText });
+        addShowcasePost({ showcaseUrl,showcaseTitle, showcaseText });
 
     }
 
@@ -38,9 +40,9 @@ const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
 
                     <div>
                         {showcasePosts.data && showcasePosts.data.map(post => {
-                            return <ShowcasePostCard post={post}/>
+                            return <ShowcasePostCard post={post} />
                         })}
-                      
+
 
 
                     </div>
@@ -51,6 +53,12 @@ const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
                 <div className="sticky top-24 h-1/2 w-4/12 bg-white border m-4 p-4">
 
                     <h1 className="text-xl m-2">Hey everyone, I built</h1>
+
+                    <input
+                        onChange={(e) => setShowcaseTitle(e.target.value)}
+                        placeholder="themakersclub"
+                        className="my-2 text-xl bg-gray-50 border-2 w-full p-2 rounded" />
+
                     <input
                         onChange={(e) => setShowcaseUrl(e.target.value)}
                         placeholder="https://makerclub.vercel.app"
@@ -73,7 +81,7 @@ const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
 }
 
 const mapStateToProps = state => ({
-    showcasePosts:state.showcasePostsReducer.showcasePosts
+    showcasePosts: state.showcasePostsReducer.showcasePosts
 
 })
 
