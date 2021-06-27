@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+
+import { connect } from 'react-redux'
+import { addShowcasePost } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 
 
-const Feedback = () => {
+const Feedback = ({ addShowcasePost }) => {
 
     const [showcaseUrl, setShowcaseUrl] = useState('');
     const [showcaseText, setShowcaseText] = useState('');
@@ -10,6 +13,7 @@ const Feedback = () => {
     const handleSubmit = () => {
 
         console.log(showcaseUrl, showcaseText)
+        addShowcasePost(showcaseUrl, showcaseText);
 
     }
 
@@ -64,4 +68,8 @@ const Feedback = () => {
     );
 }
 
-export default Feedback;
+const mapStateToProps = state => ({
+
+})
+
+export default connect(mapStateToProps, { addShowcasePost })(Feedback);
