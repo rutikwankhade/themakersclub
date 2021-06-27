@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import { connect } from 'react-redux';
+import { postResource } from '../actions/resources'
+
+
 import resourcesImg from '../assets/images/resources.png'
 
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 
 
-const Resources = () => {
+const Resources = ({resources, postResource}) => {
 
 
     const [resourceCategory, setResourceCategory] = useState('');
@@ -12,11 +17,14 @@ const Resources = () => {
 
 
 
-    useEffect(() => {
-        console.log(resourceCategory, resourceUrl)
-    }, [resourceCategory, resourceUrl])
+    // useEffect(() => {
+    //     console.log(resourceCategory, resourceUrl)
+    // }, [resourceCategory, resourceUrl])
 
-
+    const handleSubmit = () => {
+        postResource({resourceCategory, resourceUrl})
+    
+}
 
     return (
         <div className="bg-gray-50">
@@ -81,7 +89,9 @@ const Resources = () => {
                             </select>
 
                         </div>
-                        <button className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Submit</button>
+                        <button
+                            onClick={()=>handleSubmit()}
+                            className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Submit</button>
                     </div>
 
                     <div className="bg-white border p-6 m-4 sticky top-40">
@@ -113,4 +123,8 @@ const Resources = () => {
     );
 }
 
-export default Resources;
+const mapStateToProps = state => ({
+    resources:state.resources
+})
+
+export default connect(mapStateToProps,{postResource})( Resources);
