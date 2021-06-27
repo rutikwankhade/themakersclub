@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import feedbackImg from '../assets/images/review.png'
+
+
 const Feedback = () => {
+
+    const [showcaseUrl, setShowcaseUrl] = useState('');
+    const [showcaseText, setShowcaseText] = useState('');
+
+    const handleSubmit = () => {
+
+        console.log(showcaseUrl, showcaseText)
+
+    }
+
+
     return (
         <div className="bg-gray-50">
             <div className="flex flex-row">
@@ -31,14 +44,17 @@ const Feedback = () => {
 
                     <h1 className="text-xl m-2">Hey everyone, I built</h1>
                     <input
-
+                        onChange={(e) => setShowcaseUrl(e.target.value)}
                         placeholder="https://makerclub.vercel.app"
                         className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
+
                     <textarea
-                        // onChange={(e) => setResourceUrl(e.target.value)}
+                        onChange={(e) => setShowcaseText(e.target.value)}
                         placeholder="What's your project is about?"
                         className="my-2 h-60 text-xl bg-gray-50 border-2 w-full p-2 rounded" />
-                    <button className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Showcase</button>
+                    <button
+                        onClick={() => handleSubmit()}
+                        className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Showcase</button>
 
                 </div>
 
