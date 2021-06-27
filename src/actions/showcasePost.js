@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
     ADD_SHOWCASE_POST,
+    GET_SHOWCASE_POSTS,
     SHOWCASE_POST_ERROR
 } from './types';
 
@@ -25,6 +26,30 @@ export const addShowcasePost = ({ showcaseUrl, showcaseText }) => async dispatch
             type: ADD_SHOWCASE_POST,
             payload: res.data
         })
+    } catch (err) {
+        dispatch({
+            type: SHOWCASE_POST_ERROR,
+            payload: { msg: err }
+        })
+
+    }
+}
+
+
+//get all showcase posts
+
+
+export const getAllShowcasePosts = () => async dispatch => {
+
+    try {
+
+        const res = await axios.get('https://themakersclub.herokuapp.com/api/showcase');
+
+        dispatch({
+            type: GET_SHOWCASE_POSTS,
+            payload: res.data
+        })
+
     } catch (err) {
         dispatch({
             type: SHOWCASE_POST_ERROR,

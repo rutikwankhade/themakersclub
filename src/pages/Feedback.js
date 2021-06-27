@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux'
-import { addShowcasePost } from '../actions/showcasePost'
+import { addShowcasePost, getAllShowcasePosts } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 
 
-const Feedback = ({ addShowcasePost }) => {
+const Feedback = ({ addShowcasePost,getAllShowcasePosts }) => {
 
     const [showcaseUrl, setShowcaseUrl] = useState('');
     const [showcaseText, setShowcaseText] = useState('');
+
+    useEffect(() => {
+        getAllShowcasePosts();
+    }, [])
 
     const handleSubmit = () => {
 
@@ -72,4 +76,4 @@ const mapStateToProps = state => ({
 
 })
 
-export default connect(mapStateToProps, { addShowcasePost })(Feedback);
+export default connect(mapStateToProps, { addShowcasePost, getAllShowcasePosts })(Feedback);
