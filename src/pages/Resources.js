@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { postResource, getAllResources } from '../actions/resources'
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
+import {Link} from 'react-router-dom'
 
 
-const Resources = ({ resources, postResource, getAllResources }) => {
+const Resources = ({ resources, isAuthenticated, postResource, getAllResources }) => {
 
 
     const [resourceCategory, setResourceCategory] = useState('');
@@ -49,14 +50,20 @@ const Resources = ({ resources, postResource, getAllResources }) => {
 
                         })}
 
-
                     </div>
 
                 </div>
 
                 <div className=" w-4/12 ">
 
-                    <div className="sticky top-20 h-60 bg-white border-2 p-6 m-4  ">
+                    {!isAuthenticated ?
+                        <div className="sticky top-20 h-60 border-8 border-white p-8 rounded-lg m-4 bg-purple-400 text-white">
+                            
+                            <h1 className="text-2xl font-semibold">Join the makersclub community and share resources. </h1>
+                       <Link to="/signup"><button className="text-xl bg-gray-600 hover:bg-gray-700 p-2 px-6 rounded-full my-4">✨ Join now</button></Link>
+                        </div> :
+                        <div className="sticky top-20 h-60 bg-white border-2 p-6 m-4  ">
+                        
                         <input
                             onChange={(e) => setResourceUrl(e.target.value)}
                             placeholder="Share a resource url"
@@ -86,6 +93,18 @@ const Resources = ({ resources, postResource, getAllResources }) => {
                             className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Submit</button>
                     </div>
 
+                    
+                    
+                    }
+
+                    
+
+
+
+
+
+
+
                     <div className="bg-white border p-6 m-4 sticky top-40">
                         <h1 className="text-xl font-semibold">Categories</h1>
                         <div className="flex flex-row flex-wrap py-4">
@@ -114,7 +133,8 @@ const Resources = ({ resources, postResource, getAllResources }) => {
 }
 
 const mapStateToProps = state => ({
-    resources: state.resourcesReducer.resources
+    resources: state.resourcesReducer.resources,
+    isAuthenticated:state.authReducer.isAuthenticated
 })
 
 export default connect(mapStateToProps, { postResource, getAllResources })(Resources);
