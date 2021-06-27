@@ -6,7 +6,7 @@ import { addShowcasePost, getAllShowcasePosts } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 
 
-const Feedback = ({ showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
+const Feedback = ({ isAuthenticated, showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
 
     const [showcaseUrl, setShowcaseUrl] = useState('');
     const [showcaseText, setShowcaseText] = useState('');
@@ -20,7 +20,7 @@ const Feedback = ({ showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
     const handleSubmit = () => {
 
         console.log(showcaseUrl, showcaseText)
-        addShowcasePost({ showcaseUrl,showcaseTitle, showcaseText });
+        addShowcasePost({ showcaseUrl, showcaseTitle, showcaseText });
 
     }
 
@@ -49,30 +49,44 @@ const Feedback = ({ showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
 
                 </div>
 
+                {!isAuthenticated ?
+                    <div className="sticky top-24 h-1/2 w-4/12 bg-white border m-4 p-4">
+                        <div className="flex flex-row flex-wrap justify-center">
+                            <div className="rounded m-2 p-6 bg-yellow-100 text-5xl opacity-80">👨‍💻</div>
+                            <div className="rounded m-2 p-6 bg-green-100 text-5xl opacity-80">🛠</div>
+                            <div className="rounded m-2 p-6 bg-pink-100 text-5xl opacity-80">‍💬</div>
+                            <div className="rounded m-2 p-6 bg-purple-100 text-5xl opacity-80">🚀</div>
 
-                <div className="sticky top-24 h-1/2 w-4/12 bg-white border m-4 p-4">
+                        </div>
+                        <button className="my-2 rounded bg-purple-400 hover:bg-purple-500 px-6 py-2 flex text-white text-2xl mx-auto">Sign up now</button>
+                        <h1 className="text-xl font-semibold m-6 text-center">and share what you built with the makersclub.</h1>
+                    </div>
+                    :
 
-                    <h1 className="text-xl m-2">Hey everyone, I built</h1>
+                    <div className="sticky top-24 h-1/2 w-4/12 bg-white border m-4 p-4">
 
-                    <input
-                        onChange={(e) => setShowcaseTitle(e.target.value)}
-                        placeholder="themakersclub"
-                        className="my-2 text-xl bg-gray-50 border-2 w-full p-2 rounded" />
+                        <h1 className="text-xl m-2">Hey everyone, I built</h1>
 
-                    <input
-                        onChange={(e) => setShowcaseUrl(e.target.value)}
-                        placeholder="https://makerclub.vercel.app"
-                        className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
+                        <input
+                            onChange={(e) => setShowcaseTitle(e.target.value)}
+                            placeholder="themakersclub"
+                            className="my-2 text-xl bg-gray-50 border-2 w-full p-2 rounded" />
 
-                    <textarea
-                        onChange={(e) => setShowcaseText(e.target.value)}
-                        placeholder="What's your project is about?"
-                        className="my-2 h-60 text-xl bg-gray-50 border-2 w-full p-2 rounded" />
-                    <button
-                        onClick={() => handleSubmit()}
-                        className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Showcase</button>
+                        <input
+                            onChange={(e) => setShowcaseUrl(e.target.value)}
+                            placeholder="https://makerclub.vercel.app"
+                            className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
 
-                </div>
+                        <textarea
+                            onChange={(e) => setShowcaseText(e.target.value)}
+                            placeholder="What's your project is about?"
+                            className="my-2 h-60 text-xl bg-gray-50 border-2 w-full p-2 rounded" />
+                        <button
+                            onClick={() => handleSubmit()}
+                            className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Showcase</button>
+
+                    </div>
+                }
 
             </div>
 
@@ -81,7 +95,8 @@ const Feedback = ({ showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
 }
 
 const mapStateToProps = state => ({
-    showcasePosts: state.showcasePostsReducer.showcasePosts
+    showcasePosts: state.showcasePostsReducer.showcasePosts,
+    isAuthenticated: state.authReducer.isAuthenticated
 
 })
 
