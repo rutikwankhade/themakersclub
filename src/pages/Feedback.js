@@ -18,7 +18,7 @@ const Feedback = ({ showcasePosts,addShowcasePost, getAllShowcasePosts }) => {
     const handleSubmit = () => {
 
         console.log(showcaseUrl, showcaseText)
-        addShowcasePost(showcaseUrl, showcaseText);
+        addShowcasePost({ showcaseUrl, showcaseText });
 
     }
 

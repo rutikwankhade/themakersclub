@@ -13,6 +13,8 @@ import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
 import PostNewDiscussion from './pages/PostNewDiscussion';
 import DiscussPost from './pages/DiscussPost';
+import ShowcasePost from './pages/ShowcasePost';
+
 
 
 
@@ -64,6 +66,8 @@ const App = () => {
 
               <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
               <Route exact path="/discussions/:id" component={DiscussPost} />
+              <Route exact path="/posts/:id" component={ShowcasePost} />
+
 
             </div>
           </div>

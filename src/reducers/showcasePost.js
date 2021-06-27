@@ -1,7 +1,8 @@
 import {
     ADD_SHOWCASE_POST,
     SHOWCASE_POST_ERROR,
-    GET_SHOWCASE_POSTS
+    GET_SHOWCASE_POSTS,
+    GET_SHOWCASE_POST
 
 } from "../actions/types";
 
@@ -40,6 +41,13 @@ export default function showcasePostReducer( state = initialState, action) {
             return {
                 ...state,
                 showcasePosts:payload,
+                loading: false
+            }
+        
+        case GET_SHOWCASE_POST:
+            return {
+                ...state,
+                showcasePost:payload,
                 loading: false
             }
         

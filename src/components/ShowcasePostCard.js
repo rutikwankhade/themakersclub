@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import profileImg from '../assets/icons/profile.svg'
 import linkIcon from '../assets/icons/link.svg'
 
 
 
-const ShowcasePostcard = ({ post: { showcaseUrl, userId, userName, showcaseText } }) => {
+const ShowcasePostcard = ({ post: { id, showcaseUrl, userId, userName, showcaseText } }) => {
 
 
     return (
         <div className="border p-6 my-2 rounded-md bg-white">
 
-            <p className="text-xl p-4 mb-2 ">{ showcaseText}</p>
+            <p className="text-xl p-4 mb-2 ">{showcaseText}</p>
 
             <div className="flex flex-row ">
 
@@ -23,7 +24,9 @@ const ShowcasePostcard = ({ post: { showcaseUrl, userId, userName, showcaseText 
                     <a href={showcaseUrl} target="_blank" rel="noreferrer">
                         <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10 mx-4 bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
                     </a>
-                    <button className="focus:outline-none bg-purple-100 font-semibold opacity-80 border-2 hover:border-purple-400 text-purple-600 text-xl rounded h-10 px-4">Give Feedback</button>
+                    <Link to={`/posts/${id}`}>
+                        <button className="focus:outline-none bg-purple-100 font-semibold opacity-80 border-2 hover:border-purple-400 text-purple-600 text-xl rounded h-10 px-4">Give Feedback</button>
+                    </Link>
                 </div>
 
             </div>
