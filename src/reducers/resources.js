@@ -1,6 +1,7 @@
 import {
     ADD_RESOURCE,
-    RESOURCE_ERROR
+    RESOURCE_ERROR,
+    GET_ALL_RESOURCES
 } from "../actions/types";
 
 
@@ -30,6 +31,14 @@ export default function resourcesReducer(state = initialState, action) {
                 loading: false
                 
             };
+        
+        case GET_ALL_RESOURCES:
+            return {
+                ...state,
+                resources:payload ,
+                loading: false  
+            };
+        
         default: return state;
 
     }

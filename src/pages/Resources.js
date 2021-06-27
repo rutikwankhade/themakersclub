@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { postResource } from '../actions/resources'
-
-
+import { postResource, getAllResources } from '../actions/resources'
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
 
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
 
-
-const Resources = ({resources, postResource}) => {
+const Resources = ({ resources, postResource, getAllResources }) => {
 
 
     const [resourceCategory, setResourceCategory] = useState('');
@@ -17,14 +14,14 @@ const Resources = ({resources, postResource}) => {
 
 
 
-    // useEffect(() => {
-    //     console.log(resourceCategory, resourceUrl)
-    // }, [resourceCategory, resourceUrl])
+    useEffect(() => {
+        getAllResources();
+    }, [getAllResources])
 
     const handleSubmit = () => {
-        postResource({resourceCategory, resourceUrl})
-    
-}
+        postResource({ resourceCategory, resourceUrl })
+
+    }
 
     return (
         <div className="bg-gray-50">
@@ -47,16 +44,11 @@ const Resources = ({resources, postResource}) => {
 
 
                     <div className="flex flex-row flex-wrap  justify-center">
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://dev.to' descriptionLength="40" width="30%" className="m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://designvalley.club' descriptionLength="40" width="30%" className="m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="220px" />
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="200px" />
-                        <LinkPreview url='https://html-css-js.com/html/character-codes/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="200px" />
-                        <LinkPreview url='https://tabwave.vercel.app/' width="30%" descriptionLength="40" className=" m-2 text-sm" height="200px" />
+                        {resources.data && resources.data.map(res => {
+                            return <LinkPreview url={res.url} width="30%" descriptionLength="40" className=" m-2 text-sm" height="220px" />
+
+                        })}
+
 
                     </div>
 
@@ -90,7 +82,7 @@ const Resources = ({resources, postResource}) => {
 
                         </div>
                         <button
-                            onClick={()=>handleSubmit()}
+                            onClick={() => handleSubmit()}
                             className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">Submit</button>
                     </div>
 
@@ -108,8 +100,6 @@ const Resources = ({resources, postResource}) => {
                             <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Hackathons</span>
 
 
-
-
                         </div>
 
                     </div>
@@ -124,7 +114,7 @@ const Resources = ({resources, postResource}) => {
 }
 
 const mapStateToProps = state => ({
-    resources:state.resources
+    resources: state.resourcesReducer.resources
 })
 
-export default connect(mapStateToProps,{postResource})( Resources);
+export default connect(mapStateToProps, { postResource, getAllResources })(Resources);
