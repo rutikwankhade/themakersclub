@@ -49,11 +49,14 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
 
                     <div className="flex flex-row flex-wrap  justify-center">
                         {resources.data && resources.data.map(res => {
-                            return <LinkPreview url={res.url}
+                            return (
+                            <LinkPreview url={res.url}
                                 width="30%"
                                 descriptionLength="40"
-                                className=" m-2 text-sm" height="220px"
-                            />
+                                    className=" m-2 text-sm" height="220px"
+                                    fallback={<div className=" w-full border-2 text-xl p-2 ">{res.url}</div>}
+                                />
+                            )
                         })}
 
                     </div>
