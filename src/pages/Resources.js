@@ -5,7 +5,6 @@ import { postResource, getAllResources } from '../actions/resources'
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
 import { Link } from 'react-router-dom'
-import ResourceTag from '../components/ResourceTag';
 
 
 const Resources = ({ resources, isAuthenticated, postResource, getAllResources }) => {
@@ -32,10 +31,10 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
     return (
         <div className="bg-gray-50">
 
-            <div className="flex flex-row">
+            <div className="flex md:flex-row flex-col">
 
-                <div className="w-8/12">
-                    <div className="flex px-2 my-2 bg-purple-100">
+                <div className="md:w-8/12">
+                    <div className="flex md:flex-row flex-col  px-2 my-2 bg-purple-100">
                         <div className="m-10">
                             <h1 className="text-4xl my-2 font-bold">
                                 Resources
@@ -46,7 +45,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                         </div>
 
                         <img src={resourcesImg} alt="resources"
-                            className="w-80 h-40 ml-auto mt-auto mb-0"
+                            className="md:w-80 md:h-40  ml-auto mt-auto mb-0"
                         />
 
                     </div>
@@ -62,9 +61,8 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                         }).map(res => {
                             return (
                                 <LinkPreview url={res.url}
-                                    width="30%"
                                     descriptionLength="40"
-                                    className=" m-2 text-sm" height="220px"
+                                    className="md:w-52 w-full m-2 text-sm" height="220px"
                                     fallback={<div>{res.url}</div>}
                                 />
                             )
@@ -74,10 +72,10 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                 </div>
 
 
-                <div className=" w-4/12 ">
+                <div className=" md:w-4/12 flex md:flex-col flex-col-reverse">
 
                     {!isAuthenticated ?
-                        <div className="sticky top-20 h-60 border-8 border-white p-8 rounded-lg m-4 bg-purple-400 text-white">
+                        <div className="sticky md:top-20 h-60 border-8 border-white p-8 rounded-lg m-4 bg-purple-400 text-white">
 
                             <h1 className="text-2xl font-semibold">
                                 Join the makersclub community and share resources.

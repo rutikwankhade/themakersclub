@@ -12,7 +12,13 @@ const Home = () => {
         <div>
 
             <Header />
-           
+            <div className="flex flex-row flex-wrap justify-center md:justify-start m-4">
+                <div className="rounded m-2 p-6 bg-yellow-100 text-5xl opacity-80">👨‍💻</div>
+                <div className="rounded m-2 p-6 bg-green-100 text-5xl opacity-80">🛠</div>
+                <div className="rounded m-2 p-6 bg-pink-100 text-5xl opacity-80">‍💬</div>
+                <div className="rounded m-2 p-6 bg-purple-100 text-5xl opacity-80">🚀</div>
+
+            </div>
 
             <div className="mt-20 ">
                 <h1 className="text-4xl text-center mb-10 font-semibold">How it works?</h1>
@@ -53,7 +59,7 @@ const Home = () => {
                         <div className=" md:text-left flex md:flex-row flex-col">
                             <img src="https://rutikwankhade.dev/rutikwankhade.webp" alt="rutik wankhade"
                                 className="rounded-full h-24 w-24 m-4 opacity-80 md:ml-auto mr-2 " />
-                            
+
                             <div className="m-4 md:w-2/3">
                                 <h1 className="text-2xl font-semibold">Meet the Maker</h1>
                                 <p className="text-xl py-2">👋 Hi I am Rutik. I am a Frontend Developer, an avid learner and passionate about building things with code.</p>
