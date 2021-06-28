@@ -63,7 +63,7 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                         </Link>
                     </div> :
                     <div>
-                        <div className="border-2 p-6 bg-white my-4 rounded">
+                        <div className="border-2 p-6 bg-white my-4 rounded md:mb-2 mb-20">
                             <textarea
                                 onChange={(e) => setCommentText(e.target.value)}
                                 placeholder="Say something nice..!"

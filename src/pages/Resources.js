@@ -58,6 +58,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                             } else if (res.category.toLowerCase().includes(selectedTag.toLowerCase())) {
                                 return res;
                             }
+                            return 0;
                         }).map(res => {
                             return (
                                 <LinkPreview url={res.url}
@@ -75,7 +76,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                 <div className=" md:w-4/12 flex md:flex-col flex-col-reverse">
 
                     {!isAuthenticated ?
-                        <div className="sticky md:top-20 h-60 border-8 border-white p-8 rounded-lg m-4 bg-purple-400 text-white">
+                        <div className="md:sticky md:top-20 h-60 border-8 border-white p-8 rounded-lg m-4 bg-purple-400 text-white">
 
                             <h1 className="text-2xl font-semibold">
                                 Join the makersclub community and share resources.
@@ -87,7 +88,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                             </Link>
                         </div>
                         :
-                        <div className="sticky top-20 h-60 bg-white border-2 p-6 m-4  ">
+                        <div className="md:sticky mb-12 md:mb-1 md:top-20 h-60 bg-white border-2 p-6 m-4  ">
 
                             <input
                                 onChange={(e) => setResourceUrl(e.target.value)}
@@ -123,7 +124,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                     }
 
 
-                    <div className="bg-white border p-6 m-4 sticky top-40">
+                    <div className="bg-white border p-6 m-4 md:sticky md:top-40">
                         <h1 className="text-xl font-semibold">Categories</h1>
                         <div className="flex flex-row flex-wrap py-4">
                             <span

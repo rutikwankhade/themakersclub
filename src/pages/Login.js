@@ -38,12 +38,10 @@ if (isAuthenticated) {
                         {
 
                             <form onSubmit={handleSubmit(handleLogin)}
-                                className=" bg-white md:w-5/12 p-10 md:h-5/6 md:my-10 mx-10 flex flex-col justify-center border-2  rounded-md">
-                                <h1 className="text-2xl font-semibold">👋 Welcome back</h1>
+                                className=" bg-white md:w-5/12 p-10 md:h-5/6 md:my-10 md:mx-10 flex flex-col justify-center border-2  rounded-md">
+                                <h1 className="text-2xl font-semibold py-2">👋 Welcome back</h1>
 
                                 {/* <p className="text-red-300 py-2 text-center">{error}</p> */}
-
-
 
                                 <input
                                     type="email"
@@ -62,8 +60,10 @@ if (isAuthenticated) {
 
                                 <button
                                     type="submit"
-                                    className="text-lg  w-full m-2 bg-indigo-400 hover:bg-indigo-500 font-semibold text-white px-6 py-2 rounded">Login</button>
-                                <Link to="/signup" className="focus:outline-none text-center text-indigo-400 font-semibold mx-4">Don't have an account? Register</Link>
+                                    className="text-lg w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Login</button>
+                                <Link to="/signup" className="focus:outline-none hover:underline text-center text-purple-400 font-semibold mx-4">
+                                    Don't have an account? Register
+                                </Link>
                             </form>
 
                         }

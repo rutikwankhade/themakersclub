@@ -37,7 +37,7 @@ const Signup = ({signup, isAuthenticated}) => {
                     <div className="flex md:flex-row flex-col ">
                         
                             <form onSubmit={handleSubmit(handleSignup)}
-                                className=" bg-white md:w-5/12 md:h-5/6 p-10 mx-10 flex flex-col border-2  rounded-md">
+                                className=" bg-white md:w-5/12 md:h-5/6 p-10 md:mx-10 flex flex-col border-2  rounded-md">
                                 <h1 className="text-2xl font-semibold">🎓 Join the makersclub</h1>
 
                                 <p className="text-red-300 py-2 text-center">{error}</p>
@@ -72,8 +72,10 @@ const Signup = ({signup, isAuthenticated}) => {
                                 />
                                 <button
                                     type="submit"
-                                    className="text-lg  w-full m-2 bg-indigo-400 hover:bg-indigo-500 font-semibold text-white px-6 py-2 rounded">Sign up</button>
-                                <Link to="/login" className="focus:outline-none text-center text-indigo-400 font-semibold mx-4">Already a user? Login</Link>
+                                    className="text-lg  w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Sign up</button>
+                            <Link to="/login" className="hover:underline focus:outline-none text-center text-purple-400 font-semibold mx-4">
+                                Already a user? Login
+                            </Link>
                             </form>
                             
 

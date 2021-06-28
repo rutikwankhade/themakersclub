@@ -61,7 +61,7 @@ const Feedback = ({ isAuthenticated, showcasePosts, addShowcasePost, getAllShowc
                     </div>
                     :
 
-                    <div className="sticky top-24 h-1/2 w-4/12 bg-white border m-4 p-4">
+                    <div className="sticky md:top-24 h-1/2 md:w-4/12 bg-white border m-4 p-4">
 
                         <h1 className="text-xl m-2">Hey everyone, I built</h1>
 
