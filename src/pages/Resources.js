@@ -5,6 +5,7 @@ import { postResource, getAllResources } from '../actions/resources'
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
 import { Link } from 'react-router-dom'
+import ResourceTag from '../components/ResourceTag';
 
 
 const Resources = ({ resources, isAuthenticated, postResource, getAllResources }) => {
@@ -13,11 +14,15 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
     const [resourceCategory, setResourceCategory] = useState('');
     const [resourceUrl, setResourceUrl] = useState('')
 
+    const Tags = ['Design', 'Tools', 'CSS', 'UI/UX', 'Web dev', 'Marketing', 'Writing', 'Hackathons', 'Others']
+
+    const [selectedTag, setSelectedTag] = useState('')
 
 
     useEffect(() => {
         getAllResources();
-    }, [getAllResources])
+        console.log(selectedTag)
+    }, [getAllResources, selectedTag])
 
     const handleSubmit = () => {
         postResource({ resourceCategory, resourceUrl })
@@ -48,7 +53,13 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
 
 
                     <div className="flex flex-row flex-wrap  justify-center">
-                        {resources.data && resources.data.map(res => {
+                        {resources.data && resources.data.filter((res) => {
+                            if (selectedTag === "") {
+                                return res;
+                            } else if (res.category.toLowerCase().includes(selectedTag.toLowerCase())) {
+                                return res;
+                            }
+                        }).map(res => {
                             return (
                                 <LinkPreview url={res.url}
                                     width="30%"
@@ -117,15 +128,19 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                     <div className="bg-white border p-6 m-4 sticky top-40">
                         <h1 className="text-xl font-semibold">Categories</h1>
                         <div className="flex flex-row flex-wrap py-4">
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">All</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">UI/UX</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Design</span>
-                            <span className=" cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">CSS</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Tools</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Web dev</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Marketing</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Writing</span>
-                            <span className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">Hackathons</span>
+                            <span
+                                onClick={() => setSelectedTag('')}
+                                className="cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1">All</span>
+                            
+                            {
+                                Tags.map(tag => {
+                                    return <span
+                                        onClick={(e) => setSelectedTag(tag)}
+                                        className="hover:bg-purple-100 border-pink-200 cursor-pointer font-semibold bg-pink-100 rounded-full px-4 py-2 m-1"
+
+                                    >{tag}</span>
+
+                                })}
 
                         </div>
 
