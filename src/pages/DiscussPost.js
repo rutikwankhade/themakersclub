@@ -22,7 +22,7 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
         addDiscussComment(discussPost.data[0].id, { commentText })
         setTimeout(() => {
             window.location.reload()
-        },2000)
+        }, 2000)
     }
 
     return (
@@ -35,14 +35,14 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                     <h1 className="text-3xl capitalize font-semibold text-purple-400">
                         {discussPost && discussPost.data[0].postTitle}
                     </h1>
-                    
+
                     <div className="flex my-4">
                         <img src={profileImg} alt="profile" className="h-8 w-8" />
                         <span className="text-xl text-gray-500 italic capitalize mx-2 ">
                             {`Posted by ${discussPost && discussPost.data[0].userName}`}
                         </span>
                     </div>
-                    <span className="text-gray-400">{ Date(discussPost && discussPost.data[0].__createdtime__).toLocaleString()}</span>
+                    <span className="text-gray-400">{Date(discussPost && discussPost.data[0].__createdtime__).toLocaleString()}</span>
 
 
                     <ReactMarkdown className="prose text-xl py-2">
@@ -85,7 +85,7 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                                 <span className="text-xl text-gray-500 italic capitalize mx-2 ">{reply.userName}</span>
 
                             </div>
-                            <ReactMarkdown  className="prose text-xl mx-6">{reply.commentText}</ReactMarkdown>
+                            <ReactMarkdown className="prose text-xl mx-6">{reply.commentText}</ReactMarkdown>
                         </div>
                     })}
 

@@ -27,7 +27,7 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => 
             window.location.reload()
         }, 2000)
     }
-    
+
     const tagColor = (feedbackType) => {
 
         switch (feedbackType) {
@@ -48,24 +48,25 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => 
     }
 
     return (
-        <div className="bg-gray-50 flex p-12">
-            <div className="w-8/12">
+        <div className="bg-gray-50 flex md:flex-row flex-col md:p-12 p-4">
+            <div className="md:w-8/12">
 
-                <div className="border bg-white   h-60 p-10">
+                <div className="border bg-white rounded p-10">
                     <div className="flex">
-                        <h1 className="text-3xl capitalize py-2 font-semibold">{showcasePost && showcasePost.data[0].showcaseTitle}</h1>
+                        <h1 className="md:text-3xl text-2xl capitalize py-2 font-semibold">{showcasePost && showcasePost.data[0].showcaseTitle}</h1>
 
                         <a href={showcasePost && showcasePost.data[0].showcaseUrl} target="_blank" rel="noreferrer" className="ml-auto mr-4 ">
                             <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10  bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
                         </a>
                     </div>
                     <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
+                    <span className="text-gray-400 py-2">{Date(showcasePost && showcasePost.data[0].__createdtime__).toLocaleString()}</span>
 
                 </div>
 
 
 
-                <div className="border bg-white p-10 my-4">
+                <div className="border bg-white rounded p-10 my-4">
                     <h1 className="text-xl font-semibold">Give Feedback</h1>
                     <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
                         <select
@@ -92,11 +93,13 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => 
                 </div>
 
                 {showcasePost && showcasePost.data[0].feedbacks.map(feedback => {
-                    return <div className="border bg-white p-10 my-4">
-                        <div className="flex flex-row items-center">
-                            <img src={profileImg} alt="profile" className="w-8 h-8 mx-2" />
-                            <span className="text-lg">{feedback.userName}</span>
-                            <span className={`w-60 rounded-full text-center ml-auto mr-2 font-semibold  text-lg px-4 py-1 ${tagColor(feedback.feedbackType)}`}>{feedback.feedbackType}</span>
+                    return <div className="border bg-white p-10 my-4 ">
+                        <div className="flex md:flex-row flex-col-reverse md:items-center">
+                            <div className="flex flex-row md:mt-2 mt-6 md:my-0">
+                                <img src={profileImg} alt="profile" className="w-8 h-8 mx-2" />
+                                <span className="text-lg">{feedback.userName}</span>
+                            </div>
+                            <span className={` rounded-full text-center md:ml-auto mr-2 font-semibold  text-lg px-4 py-1 ${tagColor(feedback.feedbackType)}`}>{feedback.feedbackType}</span>
 
                         </div>
                         <p className="m-4 text-xl">{feedback.feedbackText}</p>
@@ -109,7 +112,7 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => 
 
             </div>
 
-            <div className=" sticky top-24 border bg-white mx-4  w-4/12 h-60">
+            <div className=" sticky top-24 border bg-white mx-4  md:w-4/12 h-60">
                 <h1 className="text-xl text-right bg-purple-50 font-semibold px-4 p-2">Maker</h1>
                 <div className="flex flex-col justify-center items-center">
                     <img src={profileImg} alt="profile" className="w-24 h-24 mt-6" />

@@ -7,7 +7,7 @@ const Navbar = ({ isAuthenticated, userName }) => {
     return (
         <div className="bg-white  p-4 flex">
             <Link to="/">
-                <h1 className=" text-gray-600 text-2xl font-mono font-bold ">🎓 themakersclub</h1>
+                <h1 className=" text-gray-600 text-2xl font-mono font-bold ">🎓 <span className="md:inline-block hidden">themakersclub</span></h1>
             </Link>
 
 
@@ -15,11 +15,10 @@ const Navbar = ({ isAuthenticated, userName }) => {
                 <div className="flex flex-row ml-auto mr-2">
                     <Link to="/login" className="mx-2">
 
-                        <button className="border-2 border-gray-600  font-bold text-gray-700 px-6 py-2 rounded">Login</button>
+                        <button className="md:text-xl text-sm border-2 border-gray-600  font-bold text-gray-700 px-6 py-2 rounded">Login</button>
                     </Link>
                     <Link to="/signup" className="mx-2">
-
-                        <button className=" border-2 border-gray-700 bg-gray-600 hover:bg-gray-700 font-bold text-white px-6 py-2 rounded">Create an account</button>
+                        <button className="md:text-xl text-sm border-2 border-gray-700 bg-gray-600 hover:bg-gray-700 font-bold text-white px-6 py-2 rounded">Create an account</button>
                     </Link>
                 </div>
                 :

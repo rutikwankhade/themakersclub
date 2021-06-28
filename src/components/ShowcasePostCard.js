@@ -18,7 +18,7 @@ const ShowcasePostcard = ({ post: { id,showcaseTitle, showcaseUrl, userId, userN
 
                 <div className="flex m-2">
                     <img src={profileImg} alt="profile" className="h-8 w-8" />
-                    <span className="text-xl capitalize mx-2">{userName}</span>
+                    <span className="md:text-xl text-md capitalize mx-2">{userName}</span>
                 </div>
 
                 <div className="ml-auto mr-2 flex">
@@ -26,7 +26,7 @@ const ShowcasePostcard = ({ post: { id,showcaseTitle, showcaseUrl, userId, userN
                         <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10 mx-4 bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
                     </a>
                     <Link to={`/posts/${id}`}>
-                        <button className="focus:outline-none bg-purple-100 font-semibold opacity-80 border-2 hover:border-purple-400 text-purple-600 text-xl rounded h-10 px-4">Give Feedback</button>
+                        <button className="focus:outline-none bg-purple-100 font-semibold opacity-80 border-2 hover:border-purple-400 text-purple-600 md:text-xl text-sm rounded h-10 px-4">Feedback</button>
                     </Link>
                 </div>
 

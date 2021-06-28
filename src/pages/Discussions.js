@@ -5,7 +5,7 @@ import { getDiscussPosts } from '../actions/discussPost'
 import DiscussPostcard from '../components/DiscussPostCard';
 import discussionsImg from '../assets/images/discussions.png'
 
-const Discussions = ({ getDiscussPosts, discussPosts }) => {
+const Discussions = ({ getDiscussPosts, discussPosts, isAuthenticated }) => {
 
     useEffect(() => {
         getDiscussPosts()
@@ -23,7 +23,7 @@ const Discussions = ({ getDiscussPosts, discussPosts }) => {
                     </p>
                     <Link to="/post-discussion" className="sticky top-20">
                         <button className="px-6 my-4 cursor-pointer bg-purple-400 hover:bg-purple-500 focus:outline-none text-white rounded-full text-center p-2 text-2xl font-semibold">
-                            Start a discussion
+                            {isAuthenticated?'Start a discussion':'Login to start a discussion'}
                         </button>
 
                     </Link>
@@ -56,7 +56,7 @@ const Discussions = ({ getDiscussPosts, discussPosts }) => {
                         <h1 className="text-2xl font-semibold">Rules</h1>
                         <p className="text-lg py-2">Be kind and respectful to everyone.</p>
                         <p className="text-lg py-2">Respect that other people in the community have different life experiences and may have a different perspective than yours</p>
-                        <p className="text-lg py-2">Do not spam.</p>
+                        <p className="text-lg py-2">Please do not spam.</p>
 
                     </div>
                 </div>
@@ -69,7 +69,8 @@ const Discussions = ({ getDiscussPosts, discussPosts }) => {
 
 
 const mapStateToProps = state => ({
-    discussPosts: state.discussPostReducer.discussPosts
+    discussPosts: state.discussPostReducer.discussPosts,
+    isAuthenticated:state.authReducer.isAuthenticated
 })
 
 export default connect(mapStateToProps, { getDiscussPosts })(Discussions);

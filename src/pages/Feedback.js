@@ -27,15 +27,15 @@ const Feedback = ({ isAuthenticated, showcasePosts, addShowcasePost, getAllShowc
 
     return (
         <div className="bg-gray-50">
-            <div className="flex flex-row">
-                <div className="w-8/12">
+            <div className="flex md:flex-row flex-col">
+                <div className="md:w-8/12">
 
-                    <div className="flex bg-purple-100 my-2 ">
+                    <div className="flex md:flex-row flex-col bg-purple-100 my-2 ">
                         <div className=" m-10">
                             <h1 className="text-4xl my-2 font-bold">Showcase and Feedback</h1>
                             <p className="text-xl ">Showcase what you built and get constructive feedback from the members of the makersclub.</p>
                         </div>
-                        <img src={feedbackImg} alt="review" className=" w-80 h-40 mt-auto mb-0 ml-auto mr-2 " />
+                        <img src={feedbackImg} alt="review" className=" md:w-80 md:h-40 mt-auto mb-0 ml-auto mr-2 " />
                     </div>
 
                     <div>
@@ -43,14 +43,12 @@ const Feedback = ({ isAuthenticated, showcasePosts, addShowcasePost, getAllShowc
                             return <ShowcasePostCard post={post} />
                         })}
 
-
-
                     </div>
 
                 </div>
 
                 {!isAuthenticated ?
-                    <div className="sticky top-24 h-1/2 w-4/12 bg-white border m-4 p-4">
+                    <div className="sticky top-24 h-1/2 md:w-4/12 bg-white border m-4 p-4">
                         <div className="flex flex-row flex-wrap justify-center">
                             <div className="rounded m-2 p-6 bg-yellow-100 text-5xl opacity-80">👨‍💻</div>
                             <div className="rounded m-2 p-6 bg-green-100 text-5xl opacity-80">🛠</div>
