@@ -5,7 +5,7 @@ import profileImg from '../assets/icons/profile.svg'
 import linkIcon from '../assets/icons/link.svg'
 
 
-const ShowcasePost = ({ getShowcasePost, showcasePost,addFeedback, match }) => {
+const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => {
 
 
     const [feedbackType, setFeedbackType] = useState('')
@@ -15,19 +15,37 @@ const ShowcasePost = ({ getShowcasePost, showcasePost,addFeedback, match }) => {
 
     useEffect(() => {
         getShowcasePost(match.params.id);
-        
+
     }, [getShowcasePost, match])
-    
+
 
     const postFeedback = () => {
         console.log(feedbackType, feedbackText);
-        addFeedback(match.params.id,{feedbackType, feedbackText})
+        addFeedback(match.params.id, { feedbackType, feedbackText })
 
         setTimeout(() => {
             window.location.reload()
         }, 2000)
     }
+    
+    const tagColor = (feedbackType) => {
 
+        switch (feedbackType) {
+            case '👏 Appreciation':
+                return 'bg-yellow-100';
+            case '✨ UI improvement':
+                return 'bg-green-100';
+            case '🐞 Bug fix':
+                return 'bg-red-100';
+            case '💡 Feature suggestion':
+                return 'bg-indigo-100'
+
+            default: return 'bg-gray-50'
+        }
+
+
+
+    }
 
     return (
         <div className="bg-gray-50 flex p-12">
@@ -54,10 +72,10 @@ const ShowcasePost = ({ getShowcasePost, showcasePost,addFeedback, match }) => {
                             onChange={(e) => setFeedbackType(e.target.value)}
                             className="block w-full bg-white text-xl text-purple-500 font-semibold focus:outline-none"
                         >
-                            <option>Bug fix</option>
-                            <option>UI improvement</option>
-                            <option>Feature suggestion</option>
-                            <option>Appreciation</option>
+                            <option>🐞 Bug fix</option>
+                            <option>✨ UI improvement</option>
+                            <option>💡 Feature suggestion</option>
+                            <option>👏 Appreciation</option>
 
                         </select>
 
@@ -73,7 +91,21 @@ const ShowcasePost = ({ getShowcasePost, showcasePost,addFeedback, match }) => {
                         className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
                 </div>
 
+                {showcasePost && showcasePost.data[0].feedbacks.map(feedback => {
+                    return <div className="border bg-white p-10 my-4">
+                        <div className="flex flex-row items-center">
+                            <img src={profileImg} alt="profile" className="w-8 h-8 mx-2" />
+                            <span className="text-lg">{feedback.userName}</span>
+                            <span className={`w-60 rounded-full text-center ml-auto mr-2 font-semibold  text-lg px-4 py-1 ${tagColor(feedback.feedbackType)}`}>{feedback.feedbackType}</span>
 
+                        </div>
+                        <p className="m-4 text-xl">{feedback.feedbackText}</p>
+
+                    </div>
+                })
+
+
+                }
 
             </div>
 
