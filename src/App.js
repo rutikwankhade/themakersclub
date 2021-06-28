@@ -47,7 +47,7 @@ const App = () => {
           <div className="sticky top-0 z-10">
             <Navbar />
           </div>
-          <div className="flex flex-row">
+          <div className="flex md:flex-row flex-col-reverse">
 
             <div className="sticky top-20">
               <Sidebar />

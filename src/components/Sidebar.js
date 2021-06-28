@@ -8,7 +8,7 @@ import resourceIcon from '../assets/icons/resource.svg'
 
 const Sidebar = () => {
     return (
-        <div className="sticky top-10 rounded-xl mx-2 w-20 flex flex-col py-10 ">
+        <div className="md:sticky md:top-10 fixed inset-x-0 bottom-0 justify-center z-20 bg-white rounded-xl mx-2 md:w-20 flex md:flex-col flex-row md:py-10 ">
 
             <NavLink to="/" className="pl-2" >
                 <img src={homeIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
