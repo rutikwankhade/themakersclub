@@ -5,11 +5,12 @@ import linkIcon from '../assets/icons/link.svg'
 
 
 
-const ShowcasePostcard = ({ post: { id, showcaseUrl, userId, userName, showcaseText } }) => {
+const ShowcasePostcard = ({ post: { id,showcaseTitle, showcaseUrl, userId, userName, showcaseText } }) => {
 
 
     return (
         <div className="border p-6 my-2 rounded-md bg-white">
+            <h1 className=" capitalize text-2xl px-4 font-semibold">{ showcaseTitle && showcaseTitle}</h1>
 
             <p className="text-xl p-4 mb-2 ">{showcaseText}</p>
 
