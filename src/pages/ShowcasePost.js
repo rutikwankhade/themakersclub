@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getShowcasePost, addFeedback } from '../actions/showcasePost'
+import { getShowcasePost, addFeedback } from '../actions/showcasePost';
+import { Link } from 'react-router-dom';
 import profileImg from '../assets/icons/profile.svg'
 import linkIcon from '../assets/icons/link.svg'
 
 
-const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => {
+const ShowcasePost = ({ isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
 
 
     const [feedbackType, setFeedbackType] = useState('')
@@ -64,33 +65,44 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => 
 
                 </div>
 
+                {
+                    !isAuthenticated ?
+                        <div >
+                            <Link to="/login">
+                            <button className="w-full mx-auto my-4 focus:outline-none rounded-full bg-purple-400 hover:bg-gray-600 p-4 text-white text-2xl ">
+                                Login to provide feedback
+                            </button>
+                        </Link>
 
+                        </div>
+                        :
+                        <div className="border bg-white rounded p-10 my-4">
+                            <h1 className="text-xl font-semibold">Give Feedback</h1>
+                            <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
+                                <select
+                                    onChange={(e) => setFeedbackType(e.target.value)}
+                                    className="block w-full bg-white text-xl text-purple-500 font-semibold focus:outline-none"
+                                >
+                                    <option>🐞 Bug fix</option>
+                                    <option>✨ UI improvement</option>
+                                    <option>💡 Feature suggestion</option>
+                                    <option>👏 Appreciation</option>
 
-                <div className="border bg-white rounded p-10 my-4">
-                    <h1 className="text-xl font-semibold">Give Feedback</h1>
-                    <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
-                        <select
-                            onChange={(e) => setFeedbackType(e.target.value)}
-                            className="block w-full bg-white text-xl text-purple-500 font-semibold focus:outline-none"
-                        >
-                            <option>🐞 Bug fix</option>
-                            <option>✨ UI improvement</option>
-                            <option>💡 Feature suggestion</option>
-                            <option>👏 Appreciation</option>
+                                </select>
 
-                        </select>
+                            </div>
+                            <textarea
+                                onChange={(e) => setFeedbackText(e.target.value)}
+                                placeholder="Share your feedback"
+                                className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
+                            />
 
-                    </div>
-                    <textarea
-                        onChange={(e) => setFeedbackText(e.target.value)}
-                        placeholder="Share your feedback"
-                        className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
-                    />
+                            <button
+                                onClick={() => postFeedback()}
+                                className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
+                        </div>
 
-                    <button
-                        onClick={() => postFeedback()}
-                        className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
-                </div>
+                }
 
                 {showcasePost && showcasePost.data[0].feedbacks.map(feedback => {
                     return <div className="border bg-white p-10 my-4 ">
@@ -124,7 +136,8 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, addFeedback, match }) => 
     );
 }
 const mapStateToProps = state => ({
-    showcasePost: state.showcasePostsReducer.showcasePost
+    showcasePost: state.showcasePostsReducer.showcasePost,
+    isAuthenticated: state.authReducer.isAuthenticated
 
 })
 
