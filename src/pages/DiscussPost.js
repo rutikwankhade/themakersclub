@@ -26,21 +26,24 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
     }
 
     return (
-        <div className="flex flex-col bg-gray-50 rounded">
+        <div className="flex flex-col bg-gray-50 ">
 
-            <div className='m-10 w-8/12 mx-20'>
+            <div className='md:m-10 m-2 md:w-8/12 md:mx-20'>
 
-                <div className="p-10 border-2 border-t-8 rounded bg-white " >
+                <div className="md:p-12 p-6 border rounded bg-white " >
 
                     <h1 className="text-3xl capitalize font-semibold text-purple-400">
                         {discussPost && discussPost.data[0].postTitle}
                     </h1>
+                    
                     <div className="flex my-4">
                         <img src={profileImg} alt="profile" className="h-8 w-8" />
                         <span className="text-xl text-gray-500 italic capitalize mx-2 ">
                             {`Posted by ${discussPost && discussPost.data[0].userName}`}
                         </span>
                     </div>
+                    <span className="text-gray-400">{ Date(discussPost && discussPost.data[0].__createdtime__).toLocaleString()}</span>
+
 
                     <ReactMarkdown className="prose text-xl py-2">
                         {discussPost && discussPost.data[0].postText}
@@ -71,14 +74,12 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                                 className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
                         </div>
 
-
-
                     </div>
                 }
 
                 <div>
                     {discussPost && discussPost.data[0].replies.map(reply => {
-                        return <div className="bg-white border-b-2 p-4 rounded">
+                        return <div className="bg-white border m-2 p-4 rounded">
                             <div className="flex my-2">
                                 <img src={profileImg} alt="profile" className="h-8 w-8" />
                                 <span className="text-xl text-gray-500 italic capitalize mx-2 ">{reply.userName}</span>
@@ -89,7 +90,6 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                     })}
 
                 </div>
-
 
             </div>
 
