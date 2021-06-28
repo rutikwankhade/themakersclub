@@ -5,7 +5,6 @@ import { postResource, getAllResources } from '../actions/resources'
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
 import { Link } from 'react-router-dom'
-import UrlPreview from '../components/UrlPreview'
 
 
 const Resources = ({ resources, isAuthenticated, postResource, getAllResources }) => {
@@ -40,7 +39,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                                 A collection of resources shared by members of the makers club.
                             </p>
                         </div>
-                        
+
                         <img src={resourcesImg} alt="resources"
                             className="w-80 h-40 ml-auto mt-auto mb-0"
                         />
@@ -51,11 +50,11 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                     <div className="flex flex-row flex-wrap  justify-center">
                         {resources.data && resources.data.map(res => {
                             return (
-                            <LinkPreview url={res.url}
-                                width="30%"
-                                descriptionLength="40"
+                                <LinkPreview url={res.url}
+                                    width="30%"
+                                    descriptionLength="40"
                                     className=" m-2 text-sm" height="220px"
-                                    fallback={<UrlPreview url={res.url}/>}
+                                    fallback={<div>{res.url}</div>}
                                 />
                             )
                         })}
@@ -63,7 +62,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                     </div>
                 </div>
 
-               
+
                 <div className=" w-4/12 ">
 
                     {!isAuthenticated ?
@@ -74,8 +73,8 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                             </h1>
                             <Link to="/signup">
                                 <button className="text-xl bg-gray-600 hover:bg-gray-700 p-2 px-6 rounded-full my-4">
-                                ✨ Join now
-                            </button>
+                                    ✨ Join now
+                                </button>
                             </Link>
                         </div>
                         :
