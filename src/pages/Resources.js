@@ -5,6 +5,7 @@ import { postResource, getAllResources } from '../actions/resources'
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
 import { Link } from 'react-router-dom'
+import UrlPreview from '../components/UrlPreview'
 
 
 const Resources = ({ resources, isAuthenticated, postResource, getAllResources }) => {
@@ -54,7 +55,7 @@ const Resources = ({ resources, isAuthenticated, postResource, getAllResources }
                                 width="30%"
                                 descriptionLength="40"
                                     className=" m-2 text-sm" height="220px"
-                                    fallback={<div className=" w-full border-2 text-xl p-2 ">{res.url}</div>}
+                                    fallback={<UrlPreview url={res.url}/>}
                                 />
                             )
                         })}

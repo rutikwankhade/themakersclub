@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.3.0",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
+    "meta-fetcher": "^3.1.1",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
