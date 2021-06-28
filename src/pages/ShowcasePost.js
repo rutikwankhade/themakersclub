@@ -1,15 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { getShowcasePost } from '../actions/showcasePost'
+import { getShowcasePost, addFeedback } from '../actions/showcasePost'
 import profileImg from '../assets/icons/profile.svg'
 import linkIcon from '../assets/icons/link.svg'
 
 
-const ShowcasePost = ({ getShowcasePost, showcasePost, match }) => {
+const ShowcasePost = ({ getShowcasePost, showcasePost,addFeedback, match }) => {
+
+
+    const [feedbackType, setFeedbackType] = useState('')
+    const [feedbackText, setFeedbackText] = useState('')
+
+
 
     useEffect(() => {
         getShowcasePost(match.params.id);
+        
     }, [getShowcasePost, match])
+    
+
+    const postFeedback = () => {
+        console.log(feedbackType, feedbackText);
+        addFeedback(match.params.id,{feedbackType, feedbackText})
+
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000)
+    }
 
 
     return (
@@ -34,7 +51,7 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, match }) => {
                     <h1 className="text-xl font-semibold">Give Feedback</h1>
                     <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
                         <select
-                            // onChange={(e) => setResourceCategory(e.target.value)}
+                            onChange={(e) => setFeedbackType(e.target.value)}
                             className="block w-full bg-white text-xl text-purple-500 font-semibold focus:outline-none"
                         >
                             <option>Bug fix</option>
@@ -46,14 +63,14 @@ const ShowcasePost = ({ getShowcasePost, showcasePost, match }) => {
 
                     </div>
                     <textarea
-                        // onChange={(e) => setCommentText(e.target.value)}
+                        onChange={(e) => setFeedbackText(e.target.value)}
                         placeholder="Share your feedback"
                         className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
                     />
 
                     <button
-                                // onClick={() => replyPost()}
-                                className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
+                        onClick={() => postFeedback()}
+                        className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
                 </div>
 
 
@@ -76,4 +93,4 @@ const mapStateToProps = state => ({
 
 })
 
-export default connect(mapStateToProps, { getShowcasePost })(ShowcasePost);
+export default connect(mapStateToProps, { getShowcasePost, addFeedback })(ShowcasePost);

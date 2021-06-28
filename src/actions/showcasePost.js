@@ -4,6 +4,7 @@ import {
     ADD_SHOWCASE_POST,
     GET_SHOWCASE_POSTS,
     GET_SHOWCASE_POST,
+    ADD_FEEDBACK,
     SHOWCASE_POST_ERROR
 } from './types';
 
@@ -85,3 +86,36 @@ export const getShowcasePost = (id) => async dispatch => {
 
     }
 }
+
+
+// ADD FEEDBACK TO SHOWCASE POST
+
+
+export const addFeedback = (postId, {feedbackText, feedbackType }) => async dispatch => {
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const body = JSON.stringify({ feedbackText, feedbackType })
+    console.log(body)
+
+
+    try {
+        const res = await axios.post(`https://themakersclub.herokuapp.com/api/showcase/feedback/${postId}`,body,config);
+console.log(res)
+        dispatch({
+            type: ADD_FEEDBACK,
+            // payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: SHOWCASE_POST_ERROR,
+            payload: { msg: err }
+        })
+
+    }
+}
+
