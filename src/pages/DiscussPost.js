@@ -6,15 +6,12 @@ import { connect } from 'react-redux';
 import { getDiscussPost, addDiscussComment } from '../actions/discussPost';
 import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton';
-import Loader from '../components/Loader'
 
 
 
 const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match }) => {
 
     const [commentText, setCommentText] = useState('')
-
-
 
 
     useEffect(() => {
@@ -24,10 +21,10 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
 
     const replyPost = () => {
 
-       
-            addDiscussComment(discussPost.data[0].id, { commentText })
-            
-        
+        addDiscussComment(discussPost.data[0].id, { commentText })
+         setTimeout(() => {
+            window.location.reload()
+        }, 2000)   
         
     }
 

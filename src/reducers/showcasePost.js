@@ -2,7 +2,8 @@ import {
     ADD_SHOWCASE_POST,
     SHOWCASE_POST_ERROR,
     GET_SHOWCASE_POSTS,
-    GET_SHOWCASE_POST
+    GET_SHOWCASE_POST,
+    ADD_FEEDBACK
 
 } from "../actions/types";
 
@@ -49,7 +50,12 @@ export default function showcasePostReducer( state = initialState, action) {
                 showcasePost:payload,
                 loading: false
             }
-        
+        case ADD_FEEDBACK:
+             return {
+                ...state,
+                loading: false
+            }
+
 
         default: return state;
     }

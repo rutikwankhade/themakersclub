@@ -21,9 +21,8 @@ const PostNewDiscussion = ({ addDiscussPost, loading }) => {
 
         if (!loading) {
             setTimeout(() => {
-                            history.push('/discussions')
-
-            },2000)
+                history.push('/discussions')
+            }, 2000)
         }
 
     }
@@ -68,9 +67,8 @@ PostNewDiscussion.propTypes = {
 };
 
 
-
 const mapStateToProps = state => ({
-    loading: state.loading
+    loading: state.discussPostReducer.loading
 })
 
 export default connect(mapStateToProps, { addDiscussPost })(PostNewDiscussion);

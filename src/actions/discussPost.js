@@ -56,7 +56,7 @@ export const getDiscussPost = (id) => async dispatch => {
 
 //POST NEW DISCUSS POST
 
-export const addDiscussPost = ({postTitle,postText}) => async dispatch => {
+export const addDiscussPost = ({ postTitle, postText }) => async dispatch => {
 
     const config = {
         headers: {
@@ -64,10 +64,10 @@ export const addDiscussPost = ({postTitle,postText}) => async dispatch => {
         }
     }
 
-        const body = JSON.stringify({ postTitle,postText })
+    const body = JSON.stringify({ postTitle, postText })
 
     try {
-        const res = await axios.post('https://themakersclub.herokuapp.com/api/discuss-posts',body,config);
+        const res = await axios.post('https://themakersclub.herokuapp.com/api/discuss-posts', body, config);
 
         dispatch({
             type: ADD_DISCUSS_POST,
@@ -85,7 +85,7 @@ export const addDiscussPost = ({postTitle,postText}) => async dispatch => {
 // ADD COMMENT ON DISCUSS POST
 
 
-export const addDiscussComment = (postId, {commentText}) => async dispatch => {
+export const addDiscussComment = (postId, { commentText }) => async dispatch => {
 
     const config = {
         headers: {
@@ -98,11 +98,11 @@ export const addDiscussComment = (postId, {commentText}) => async dispatch => {
 
 
     try {
-        const res = await axios.post(`https://themakersclub.herokuapp.com/api/discuss-posts/comment/${postId}`,body,config);
-// console.log(res)
+        const res = await axios.post(`https://themakersclub.herokuapp.com/api/discuss-posts/comment/${postId}`, body, config);
+        console.log(res)
         dispatch({
             type: ADD_DISCUSS_COMMENT,
-            payload: res.data
+            // payload: res.data
         })
     } catch (err) {
         dispatch({

@@ -11,7 +11,7 @@ import {
 
 //add showcase post
 
-export const addShowcasePost = ({ showcaseUrl, showcaseText,showcaseTitle }) => async dispatch => {
+export const addShowcasePost = ({ showcaseUrl, showcaseText, showcaseTitle }) => async dispatch => {
 
     const config = {
         headers: {
@@ -91,7 +91,7 @@ export const getShowcasePost = (id) => async dispatch => {
 // ADD FEEDBACK TO SHOWCASE POST
 
 
-export const addFeedback = (postId, {feedbackText, feedbackType }) => async dispatch => {
+export const addFeedback = (postId, { feedbackText, feedbackType }) => async dispatch => {
 
     const config = {
         headers: {
@@ -104,8 +104,8 @@ export const addFeedback = (postId, {feedbackText, feedbackType }) => async disp
 
 
     try {
-        const res = await axios.post(`https://themakersclub.herokuapp.com/api/showcase/feedback/${postId}`,body,config);
-console.log(res)
+        const res = await axios.post(`https://themakersclub.herokuapp.com/api/showcase/feedback/${postId}`, body, config);
+        console.log(res)
         dispatch({
             type: ADD_FEEDBACK,
             // payload: res.data

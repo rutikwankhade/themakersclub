@@ -17,7 +17,7 @@ const DiscussPostcard = ({ post: { postTitle, replies, userId, userName, postTex
                     <span className="text-xl capitalize mx-2">{userName}</span>
 
                 </div>
-                <span className="ml-auto mr-2 border-2 px-2 rounded">{`${replies.length} replies`}</span>
+                <span className="ml-auto mr-2 border-2 p-2 rounded">{`${replies.length} replies`}</span>
             </div>
         </div>
     );

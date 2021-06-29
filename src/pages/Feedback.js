@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ShowcasePostCard from '../components/ShowcasePostCard';
 
 import { connect } from 'react-redux'
@@ -11,9 +11,7 @@ import { useForm } from 'react-hook-form';
 
 const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
 
-    // const [showcaseUrl, setShowcaseUrl] = useState('');
-    // const [showcaseText, setShowcaseText] = useState('');
-    // const [showcaseTitle, setShowcaseTitle] = useState('');
+   
     const { register, handleSubmit } = useForm();
 
 
