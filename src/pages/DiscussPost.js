@@ -7,6 +7,7 @@ import { getDiscussPost, addDiscussComment } from '../actions/discussPost';
 import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton';
 
+import { formatDistance } from 'date-fns'
 
 
 const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match }) => {
@@ -46,7 +47,7 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                                 {`Posted by ${discussPost && discussPost.data[0].userName}`}
                             </span>
                         </div>
-                        <span className="text-gray-400">{Date(discussPost && discussPost.data[0].__createdtime__).toLocaleString()}</span>
+                        <span className="text-gray-400">{formatDistance(discussPost && discussPost.data[0].__createdtime__ , new Date(), { addSuffix: true })}</span>
 
 
                         <ReactMarkdown className="prose text-xl py-2">

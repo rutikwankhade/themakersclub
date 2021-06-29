@@ -7,6 +7,7 @@ import linkIcon from '../assets/icons/link.svg'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
 
+import { formatDistance } from 'date-fns'
 
 
 const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
@@ -71,7 +72,7 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                 </a>
                             </div>
                             <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
-                            <span className="text-gray-400 py-2">{Date(showcasePost && showcasePost.data[0].__createdtime__).toLocaleString()}</span>
+                            <span className="text-gray-400 py-2">{formatDistance(showcasePost && showcasePost.data[0].__createdtime__, new Date(),{addSuffix: true}).toLocaleString()}</span>
                         </div>
                     }
                 </div>
