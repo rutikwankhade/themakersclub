@@ -1,4 +1,4 @@
-## 🎓 themakersclub
+# 🎓 themakersclub
 themakersclub is a club of Ideas, feedbacks and resources.
 See live https://themakersclub.vercel.app
 
@@ -22,8 +22,10 @@ See live https://themakersclub.vercel.app
 
 Built while participating in [Hashnode x HarperDB Hackathon](https://hashnode.com/n/harperdbhackathon) 
 
-<a href="https://www.buymeacoffee.com/rutikwankhade" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 110px !important;" ></a>
 Don't forget to leave a ⭐ if you found this useful.
+
+<a href="https://www.buymeacoffee.com/rutikwankhade" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" height="50px" ></a>
+
 
 
 
