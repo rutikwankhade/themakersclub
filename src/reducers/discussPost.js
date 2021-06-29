@@ -58,7 +58,7 @@ export default function discussPostReducer(state = initialState, action) {
         case ADD_DISCUSS_COMMENT:
             return {
                 ...state,
-                discussPost:payload ,
+                discussPost: payload ,
                 loading: false
                 
             };

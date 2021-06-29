@@ -7,7 +7,7 @@ const DiscussPostcard = ({ post: { postTitle, replies, userId, userName, postTex
 
 
     return (
-        <div className="border-2 p-6 rounded-md bg-white">
+        <div className="border m-1 p-6 rounded-md bg-white">
             <h1 className="text-2xl font-semibold">{postTitle}</h1>
             <ReactMarkdown className="text-xl p-2">{`${postText.substring(0, 130)}..`}</ReactMarkdown>
             <div className="flex flex-row mt-2">

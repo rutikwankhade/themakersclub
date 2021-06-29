@@ -7,9 +7,10 @@ import PropTypes from 'prop-types';
 import joinImg from '../assets/images/join.png'
 import { connect } from 'react-redux'
 import { login } from '../actions/auth'
+import Loader from '../components/Loader';
 
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated,loading }) => {
 
     // const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
@@ -44,6 +45,7 @@ if (isAuthenticated) {
                                 {/* <p className="text-red-300 py-2 text-center">{error}</p> */}
 
                                 <input
+                                    required
                                     type="email"
                                     placeholder="Email"
                                     className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
@@ -51,6 +53,7 @@ if (isAuthenticated) {
                                 />
 
                                 <input
+                                    required
                                     type="password"
                                     placeholder="Password"
                                     className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
@@ -60,7 +63,9 @@ if (isAuthenticated) {
 
                                 <button
                                     type="submit"
-                                    className="text-lg w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Login</button>
+                                    className="flex text-lg w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">
+                                    Login {loading?<Loader />:<span></span>}
+                                </button>
                                 <Link to="/signup" className="focus:outline-none hover:underline text-center text-purple-400 font-semibold mx-4">
                                     Don't have an account? Register
                                 </Link>
@@ -86,7 +91,9 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isAuthenticated: state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+        loading: state.authReducer.loading
+
 });
 
 export default connect(

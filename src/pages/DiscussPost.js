@@ -5,11 +5,15 @@ import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
 import { getDiscussPost, addDiscussComment } from '../actions/discussPost';
 import { Link } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton';
+import Loader from '../components/Loader'
+
 
 
 const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match }) => {
 
     const [commentText, setCommentText] = useState('')
+
 
 
 
@@ -19,10 +23,12 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
 
 
     const replyPost = () => {
-        addDiscussComment(discussPost.data[0].id, { commentText })
-        setTimeout(() => {
-            window.location.reload()
-        }, 2000)
+
+       
+            addDiscussComment(discussPost.data[0].id, { commentText })
+            
+        
+        
     }
 
     return (
@@ -31,27 +37,30 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
             <div className='md:m-10 m-2 md:w-8/12 md:mx-20'>
 
                 <div className="md:p-12 p-6 border rounded bg-white " >
+                    {loading ? <Skeleton height={30} count={5}/> : <div>
 
-                    <h1 className="text-3xl capitalize font-semibold text-purple-400">
-                        {discussPost && discussPost.data[0].postTitle}
-                    </h1>
+                        <h1 className="text-3xl capitalize font-semibold text-purple-400">
+                            {discussPost && discussPost.data[0].postTitle}
+                        </h1>
 
-                    <div className="flex my-4">
-                        <img src={profileImg} alt="profile" className="h-8 w-8" />
-                        <span className="text-xl text-gray-500 italic capitalize mx-2 ">
-                            {`Posted by ${discussPost && discussPost.data[0].userName}`}
-                        </span>
+                        <div className="flex my-4">
+                            <img src={profileImg} alt="profile" className="h-8 w-8" />
+                            <span className="text-xl text-gray-500 italic capitalize mx-2 ">
+                                {`Posted by ${discussPost && discussPost.data[0].userName}`}
+                            </span>
+                        </div>
+                        <span className="text-gray-400">{Date(discussPost && discussPost.data[0].__createdtime__).toLocaleString()}</span>
+
+
+                        <ReactMarkdown className="prose text-xl py-2">
+                            {discussPost && discussPost.data[0].postText}
+                        </ReactMarkdown>
+                        <h2 className=" w-40 my-4 text-xl font-semibold italic border-2 p-2 rounded text-pink-400 text-center">
+                            {`${discussPost && discussPost.data[0].replies.length} Replies`}
+                        </h2>
+
                     </div>
-                    <span className="text-gray-400">{Date(discussPost && discussPost.data[0].__createdtime__).toLocaleString()}</span>
-
-
-                    <ReactMarkdown className="prose text-xl py-2">
-                        {discussPost && discussPost.data[0].postText}
-                    </ReactMarkdown>
-                    <h2 className=" w-40 my-4 text-xl font-semibold italic border-2 p-2 rounded text-pink-400 text-center">
-                        {`${discussPost && discussPost.data[0].replies.length} Replies`}
-                    </h2>
-
+                    }
                 </div>
 
                 {!isAuthenticated ?
@@ -64,14 +73,19 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
                     </div> :
                     <div>
                         <div className="border-2 p-6 bg-white my-4 rounded md:mb-2 mb-20">
-                            <textarea
-                                onChange={(e) => setCommentText(e.target.value)}
-                                placeholder="Say something nice..!"
-                                className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
-                            />
-                            <button
-                                onClick={() => replyPost()}
-                                className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
+                            <form>
+                                <textarea
+                                    required
+                                    onChange={(e) => setCommentText(e.target.value)}
+                                    placeholder="Say something nice..!"
+                                    className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
+                                />
+                                <button
+                                    onClick={() => replyPost()}
+                                    className="flex bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">
+                                    Submit 
+                                </button>
+                            </form>
                         </div>
 
                     </div>
@@ -99,7 +113,7 @@ const DiscussPost = ({ discussPost, loading, getDiscussPost, addDiscussComment, 
 
 const mapStateToProps = state => ({
     discussPost: state.discussPostReducer.discussPost,
-    loading: state.loading,
+    loading: state.discussPostReducer.loading,
     isAuthenticated: state.authReducer.isAuthenticated
 
 })

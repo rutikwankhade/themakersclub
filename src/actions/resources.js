@@ -25,6 +25,8 @@ export const postResource = ({ resourceUrl, resourceCategory }) => async dispatc
             type: ADD_RESOURCE,
             payload: res.data
         })
+        return res;
+
     } catch (err) {
         dispatch({
             type: RESOURCE_ERROR,

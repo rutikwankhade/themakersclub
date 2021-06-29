@@ -94,15 +94,15 @@ export const addDiscussComment = (postId, {commentText}) => async dispatch => {
     }
 
     const body = JSON.stringify({ commentText })
-    console.log(body)
+    // console.log(body)
 
 
     try {
         const res = await axios.post(`https://themakersclub.herokuapp.com/api/discuss-posts/comment/${postId}`,body,config);
-console.log(res)
+// console.log(res)
         dispatch({
             type: ADD_DISCUSS_COMMENT,
-            // payload: res.data
+            payload: res.data
         })
     } catch (err) {
         dispatch({

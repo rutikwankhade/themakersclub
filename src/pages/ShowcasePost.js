@@ -4,13 +4,17 @@ import { getShowcasePost, addFeedback } from '../actions/showcasePost';
 import { Link } from 'react-router-dom';
 import profileImg from '../assets/icons/profile.svg'
 import linkIcon from '../assets/icons/link.svg'
+import Skeleton from 'react-loading-skeleton';
+import { useForm } from 'react-hook-form';
 
 
-const ShowcasePost = ({ isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
 
+const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
 
-    const [feedbackType, setFeedbackType] = useState('')
-    const [feedbackText, setFeedbackText] = useState('')
+    const { register, handleSubmit } = useForm();
+
+    const [feedbackType, setFeedbackType] = useState('🐞 Bug fix')
+    // const [feedbackText, setFeedbackText] = useState('')
 
 
 
@@ -20,13 +24,17 @@ const ShowcasePost = ({ isAuthenticated, getShowcasePost, showcasePost, addFeedb
     }, [getShowcasePost, match])
 
 
-    const postFeedback = () => {
+    const postFeedback = (data) => {
+        const { feedbackText } = data;
+
         console.log(feedbackType, feedbackText);
         addFeedback(match.params.id, { feedbackType, feedbackText })
 
         setTimeout(() => {
             window.location.reload()
         }, 2000)
+
+
     }
 
     const tagColor = (feedbackType) => {
@@ -53,56 +61,74 @@ const ShowcasePost = ({ isAuthenticated, getShowcasePost, showcasePost, addFeedb
             <div className="md:w-8/12">
 
                 <div className="border bg-white rounded p-10">
-                    <div className="flex">
-                        <h1 className="md:text-3xl text-2xl capitalize py-2 font-semibold">{showcasePost && showcasePost.data[0].showcaseTitle}</h1>
+                    {loading ? <Skeleton count={4} height={30} /> :
+                        <div>
+                            <div className="flex">
+                                <h1 className="md:text-3xl text-2xl capitalize py-2 font-semibold">{showcasePost && showcasePost.data[0].showcaseTitle}</h1>
 
-                        <a href={showcasePost && showcasePost.data[0].showcaseUrl} target="_blank" rel="noreferrer" className="ml-auto mr-4 ">
-                            <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10  bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
-                        </a>
-                    </div>
-                    <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
-                    <span className="text-gray-400 py-2">{Date(showcasePost && showcasePost.data[0].__createdtime__).toLocaleString()}</span>
-
+                                <a href={showcasePost && showcasePost.data[0].showcaseUrl} target="_blank" rel="noreferrer" className="ml-auto mr-4 ">
+                                    <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10  bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
+                                </a>
+                            </div>
+                            <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
+                            <span className="text-gray-400 py-2">{Date(showcasePost && showcasePost.data[0].__createdtime__).toLocaleString()}</span>
+                        </div>
+                    }
                 </div>
 
-                {
-                    !isAuthenticated ?
-                        <div >
-                            <Link to="/login">
-                            <button className="w-full mx-auto my-4 focus:outline-none rounded-full bg-purple-400 hover:bg-gray-600 p-4 text-white text-2xl ">
-                                Login to provide feedback
-                            </button>
-                        </Link>
+                {authLoading ? <Skeleton height={200} className="my-4" /> :
 
-                        </div>
-                        :
-                        <div className="border bg-white rounded p-10 my-4">
-                            <h1 className="text-xl font-semibold">Give Feedback</h1>
-                            <div class=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
-                                <select
-                                    onChange={(e) => setFeedbackType(e.target.value)}
-                                    className="block w-full bg-white text-xl text-purple-500 font-semibold focus:outline-none"
-                                >
-                                    <option>🐞 Bug fix</option>
-                                    <option>✨ UI improvement</option>
-                                    <option>💡 Feature suggestion</option>
-                                    <option>👏 Appreciation</option>
+                    <div>
+                        {
+                            !isAuthenticated ?
+                                <div >
+                                    <Link to="/login">
+                                        <button className="w-full mx-auto my-4 focus:outline-none rounded-full bg-purple-400 hover:bg-gray-600 p-4 text-white text-2xl ">
+                                            Login to provide feedback
+                                        </button>
+                                    </Link>
 
-                                </select>
+                                </div>
+                                :
+                                <div className="border bg-white rounded p-10 my-4">
+                                    <h1 className="text-xl font-semibold">Give Feedback</h1>
+                                    <form onSubmit={handleSubmit(postFeedback)}>
+                                        <div className=" inline-block relative w-full border my-2 px-4 py-2 rounded shadow">
+                                            <select
 
-                            </div>
-                            <textarea
-                                onChange={(e) => setFeedbackText(e.target.value)}
-                                placeholder="Share your feedback"
-                                className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
-                            />
+                                                onChange={(e) => setFeedbackType(e.target.value)}
+                                                className="block w-full bg-white text-xl text-purple-500 font-semibold focus:outline-none"
+                                            >
 
-                            <button
-                                onClick={() => postFeedback()}
-                                className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
-                        </div>
+                                                <option>🐞 Bug fix</option>
+                                                <option>✨ UI improvement</option>
+                                                <option>💡 Feature suggestion</option>
+                                                <option>👏 Appreciation</option>
 
-                }
+                                            </select>
+
+                                        </div>
+                                        <textarea
+                                            required
+                                            {...register("feedbackText")}
+
+                                            // onChange={(e) => setFeedbackText(e.target.value)}
+                                            placeholder="Share your feedback"
+                                            className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
+                                        />
+
+                                        <button
+                                            type="submit"
+                                            // onClick={() => postFeedback()}
+                                            className="bg-gray-600 hover:bg-gray-700 rounded text-white px-6 py-2 text-xl ">Submit</button>
+                                    </form>
+                                </div>
+
+                        }
+
+                    </div>}
+
+
 
                 {showcasePost && showcasePost.data[0].feedbacks.map(feedback => {
                     return <div className="border bg-white p-10 my-4 ">
@@ -137,7 +163,11 @@ const ShowcasePost = ({ isAuthenticated, getShowcasePost, showcasePost, addFeedb
 }
 const mapStateToProps = state => ({
     showcasePost: state.showcasePostsReducer.showcasePost,
-    isAuthenticated: state.authReducer.isAuthenticated
+    loading: state.showcasePostsReducer.loading,
+
+    isAuthenticated: state.authReducer.isAuthenticated,
+    authLoading: state.authReducer.loading
+
 
 })
 

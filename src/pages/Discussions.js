@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { getDiscussPosts } from '../actions/discussPost'
 import DiscussPostcard from '../components/DiscussPostCard';
 import discussionsImg from '../assets/images/discussions.png'
+import Skeleton from 'react-loading-skeleton';
 
-const Discussions = ({ getDiscussPosts, discussPosts, isAuthenticated }) => {
+
+const Discussions = ({ loading, getDiscussPosts, discussPosts, isAuthenticated }) => {
 
     useEffect(() => {
         getDiscussPosts()
@@ -37,16 +39,21 @@ const Discussions = ({ getDiscussPosts, discussPosts, isAuthenticated }) => {
 
             <div className="bg-gray-50 p-2 rounded flex md:flex-row flex-col">
 
-                <div className="flex flex-col bg-gray-50 justify-center md:w-8/12 md:pb-20">
+
+
+                    <div className="flex flex-col bg-gray-50 justify-center md:w-8/12 md:pb-20">
 
                     {
-                        discussPosts.data && discussPosts.data.map(post => {
-                            return <Link to={`/discussions/${post.id}`}>
-                                <DiscussPostcard post={post} />
-                            </Link>
 
-                        })}
-                </div>
+                            discussPosts.data && discussPosts.data.map(post => {
+                                return <Link to={`/discussions/${post.id}`}>
+                                    {loading ? <Skeleton height={ 200}/>:<DiscussPostcard post={post} />}
+                                </Link>
+
+                            })
+                        }
+                    </div>
+                
 
                 <div className="md:w-4/12 flex flex-col items-center">
 
@@ -70,7 +77,9 @@ const Discussions = ({ getDiscussPosts, discussPosts, isAuthenticated }) => {
 
 const mapStateToProps = state => ({
     discussPosts: state.discussPostReducer.discussPosts,
-    isAuthenticated:state.authReducer.isAuthenticated
+    isAuthenticated: state.authReducer.isAuthenticated,
+        loading: state.discussPostReducer.loading,
+
 })
 
 export default connect(mapStateToProps, { getDiscussPosts })(Discussions);

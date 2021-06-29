@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
-import {Link, Redirect} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 
 import joinImg from '../assets/images/join.png'
-import {connect} from 'react-redux'
-import {  register as signup } from '../actions/auth';
+import { connect } from 'react-redux'
+import { register as signup } from '../actions/auth';
 
 
-const Signup = ({signup, isAuthenticated}) => {
+const Signup = ({ signup, isAuthenticated }) => {
 
     const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
 
     const handleSignup = data => {
 
-        const {username, email, password} = data
+        const { username, email, password } = data
         if (data.password !== data.confirmPassword) {
             setError('Passwords didnt match.')
 
@@ -25,7 +25,7 @@ const Signup = ({signup, isAuthenticated}) => {
     }
 
     if (isAuthenticated) {
-        return <Redirect to="/showcase-feedback"/>
+        return <Redirect to="/showcase-feedback" />
     }
 
 
@@ -35,51 +35,55 @@ const Signup = ({signup, isAuthenticated}) => {
                 <div>
 
                     <div className="flex md:flex-row flex-col ">
-                        
-                            <form onSubmit={handleSubmit(handleSignup)}
-                                className=" bg-white md:w-5/12 md:h-5/6 p-10 md:mx-10 flex flex-col border-2  rounded-md">
-                                <h1 className="text-2xl font-semibold">🎓 Join the makersclub</h1>
 
-                                <p className="text-red-300 py-2 text-center">{error}</p>
+                        <form onSubmit={handleSubmit(handleSignup)}
+                            className=" bg-white md:w-5/12 md:h-5/6 p-10 md:mx-10 flex flex-col border-2  rounded-md">
+                            <h1 className="text-2xl font-semibold">🎓 Join the makersclub</h1>
 
-                                <input
-                                    type="text"
-                                    placeholder="Name"
-                                    className="text-lg m-2 bg-gray-100 py-2 px-4 w-full rounded"
-                                    {...register("username")}
-                                />
+                            <p className="text-red-300 py-2 text-center">{error}</p>
 
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
-                                    {...register("email")}
-                                />
+                            <input
+                                required
+                                type="text"
+                                placeholder="Name"
+                                className="text-lg m-2 bg-gray-100 py-2 px-4 w-full rounded"
+                                {...register("username")}
+                            />
 
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
-                                    {...register("password")}
-                                />
+                            <input
+                                required
+                                type="email"
+                                placeholder="Email"
+                                className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
+                                {...register("email")}
+                            />
 
-                                <input
-                                    type="password"
-                                    placeholder="Confirm password"
-                                    className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
-                                    {...register("confirmPassword")}
+                            <input
+                                required
+                                type="password"
+                                placeholder="Password"
+                                className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
+                                {...register("password")}
+                            />
 
-                                />
-                                <button
-                                    type="submit"
-                                    className="text-lg  w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Sign up</button>
+                            <input
+                                required
+                                type="password"
+                                placeholder="Confirm password"
+                                className="text-lg m-2 bg-gray-100 px-4 py-2 w-full rounded"
+                                {...register("confirmPassword")}
+
+                            />
+                            <button
+                                type="submit"
+                                className="text-lg  w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Sign up</button>
                             <Link to="/login" className="hover:underline focus:outline-none text-center text-purple-400 font-semibold mx-4">
                                 Already a user? Login
                             </Link>
-                            </form>
-                            
+                        </form>
 
-                        
+
+
 
                         <img src={joinImg} alt="join now" className="md:w-1/2 h-full md:mt-0 mt-10" />
 
@@ -98,5 +102,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    {signup}
-)(Signup) ;
+    { signup }
+)(Signup);
