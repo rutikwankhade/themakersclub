@@ -1,54 +1,31 @@
-# Create React App + Tailwind CSS
-![screenshot (70)](https://user-images.githubusercontent.com/47467468/103127508-1a0e3e80-46b8-11eb-9d7d-91866a0e8e55.png)
+## 🎓 themakersclub
+themakersclub is a club of Ideas, feedbacks and resources.
+See live https://themakersclub.vercel.app
+
+<kbd>
+<img src="https://user-images.githubusercontent.com/47467468/123798337-b5e96300-d904-11eb-89e4-610e179acd40.png" height="auto" width="800px"  margin="20px">
+</kbd>
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[Setting up Tailwind CSS ](https://tailwindcss.com/docs/guides/create-react-app) in a Create React App project.
+## ⚡ Features
+- Showcase what you built and get constructive feedback from the members of the makersclub.
+- Start a discuusion thread on any topic and invite people to share their thoughts and ideas. 
+- A collection of resources shared by members of the makers club.
+
+## 👨‍💻 Tech stack
+- React
+- Nodejs
+- Express
+- HarperDB
+- Redux
+
+Built while participating in [Hashnode x HarperDB Hackathon](https://hashnode.com/n/harperdbhackathon) 2021
+
+<a href="https://www.buymeacoffee.com/rutikwankhade" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+Don't forget to leave a ⭐ if you found this useful.
 
 
-## Installation
 
-Clone the repository
-- `git clone https://github.com/rutikwankhade/cra-tailwindcss-starter`
 
-Change your current directory
-- `cd cra-tailwindcss-starter`
 
-Install all the required dependencies and run 
-- `npm install`
-- `npm start`
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-- [React documentation](https://reactjs.org/).
-- [Tailwindcss docs](https://tailwindcss.com/)
