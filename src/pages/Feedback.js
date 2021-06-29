@@ -6,6 +6,7 @@ import { addShowcasePost, getAllShowcasePosts } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
+import {Link } from 'react-router-dom'
 
 
 
@@ -67,7 +68,8 @@ const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, ge
                                         <div className="rounded m-2 p-6 bg-purple-100 text-5xl opacity-80">🚀</div>
 
                                     </div>
-                                    <button className="my-2 rounded bg-purple-400 hover:bg-purple-500 px-6 py-2 flex text-white text-2xl mx-auto">Sign up now</button>
+                                    <Link to="/signup">
+                                    <button className="my-2 rounded bg-purple-400 hover:bg-purple-500 px-6 py-2 flex text-white text-2xl mx-auto">Sign up now</button></Link>
                                     <h1 className="text-xl font-semibold m-6 text-center">and share what you built with the makersclub.</h1>
                                 </div>
                                 :
