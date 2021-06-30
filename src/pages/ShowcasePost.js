@@ -13,10 +13,7 @@ import { formatDistance } from 'date-fns'
 const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
 
     const { register, handleSubmit } = useForm();
-
     const [feedbackType, setFeedbackType] = useState('🐞 Bug fix')
-    // const [feedbackText, setFeedbackText] = useState('')
-
 
 
     useEffect(() => {
@@ -112,8 +109,6 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                         <textarea
                                             required
                                             {...register("feedbackText")}
-
-                                            // onChange={(e) => setFeedbackText(e.target.value)}
                                             placeholder="Share your feedback"
                                             className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
                                         />
@@ -151,7 +146,7 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
 
             </div>
 
-            <div className=" sticky top-24 border bg-white mx-4  md:w-4/12 h-60">
+            <div className=" sticky top-24 border rounded bg-white mx-4  md:w-4/12 h-60">
                 <h1 className="text-xl text-right bg-purple-50 font-semibold px-4 p-2">Maker</h1>
                 <div className="flex flex-col justify-center items-center">
                     <img src={profileImg} alt="profile" className="w-24 h-24 mt-6" />
