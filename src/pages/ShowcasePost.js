@@ -7,7 +7,7 @@ import linkIcon from '../assets/icons/link.svg'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
 
-import { formatDistance } from 'date-fns'
+import { formatRelative } from 'date-fns'
 
 
 const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
@@ -50,9 +50,9 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
             default: return 'bg-gray-50'
         }
 
-
-
     }
+
+
 
     return (
         <div className="bg-gray-50 flex md:flex-row flex-col md:p-12 p-4">
@@ -69,10 +69,14 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                 </a>
                             </div>
                             <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
-                            <span className="text-gray-400 py-2">{showcasePost && formatDistance(showcasePost.data[0].__createdtime__, new Date(),{addSuffix: true})}</span>
+                            <span className="text-gray-400 py-2">{showcasePost && formatRelative(showcasePost.data[0].__createdtime__, new Date())}</span>
                         </div>
                     }
                 </div>
+
+
+
+
 
                 {authLoading ? <Skeleton height={200} className="my-4" /> :
 
@@ -129,9 +133,9 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                 {showcasePost && showcasePost.data[0].feedbacks.map(feedback => {
                     return <div className="border bg-white p-10 my-4 ">
                         <div className="flex md:flex-row flex-col-reverse md:items-center">
-                            <div className="flex flex-row md:mt-2 mt-6 md:my-0">
-                                <img src={profileImg} alt="profile" className="w-8 h-8 mx-2" />
-                                <span className="text-lg">{feedback.userName}</span>
+                            <div className="flex flex-row  items-center md:mt-2 mt-6 md:my-0">
+                                <img src={profileImg} alt="profile" className="md:w-7 md:h-7 mx-2" />
+                                <span className="text-md capitalize font-semibold text-gray-600">{feedback.userName}</span>
                             </div>
                             <span className={` rounded-full text-center md:ml-auto mr-2 font-semibold  text-lg px-4 py-1 ${tagColor(feedback.feedbackType)}`}>{feedback.feedbackType}</span>
 
@@ -146,14 +150,24 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
 
             </div>
 
-            <div className=" sticky top-24 border rounded bg-white mx-4  md:w-4/12 h-60">
-                <h1 className="text-xl text-right bg-purple-50 font-semibold px-4 p-2">Maker</h1>
-                <div className="flex flex-col justify-center items-center">
-                    <img src={profileImg} alt="profile" className="w-24 h-24 mt-6" />
-                    <h3 className="my-2 text-xl ">{showcasePost && showcasePost.data[0].userName}</h3>
+            <div className=" sticky top-24  mx-4  md:w-4/12 h-60">
+
+                <div className=" border rounded bg-white">
+                    <h1 className="text-xl text-right bg-purple-50 font-semibold px-4 p-2">Maker</h1>
+                    <div className="flex flex-col justify-center items-center">
+                        <img src={profileImg} alt="profile" className="w-24 h-24 mt-6" />
+                        <h3 className="my-2 text-xl  ">{showcasePost && showcasePost.data[0].userName}</h3>
+                    </div>
                 </div>
+                {loading ? <Skeleton height={50} className="my-2" />
+                    : <div className="text-center font-semibold bg-white border p-2 my-2 text-xl">
+                        {`${showcasePost && showcasePost.data[0].feedbacks.length} Feedbacks`}
+                    </div>
+                }
+
 
             </div>
+
         </div>
     );
 }

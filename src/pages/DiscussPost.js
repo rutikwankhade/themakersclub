@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import profileImg from '../assets/icons/profile.svg'
 import ReactMarkdown from 'react-markdown';
 
@@ -9,7 +9,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
 
 
-import { formatDistance } from 'date-fns'
+import { formatRelative } from 'date-fns'
 
 
 const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match }) => {
@@ -32,7 +32,7 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
 
     }
 
-   
+
     return (
         <div className="flex flex-col bg-gray-50 ">
 
@@ -51,7 +51,7 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
                                 {`Posted by ${discussPost && discussPost.data[0].userName}`}
                             </span>
                         </div>
-                        <span className="text-gray-400">{formatDistance(discussPost && discussPost.data[0].__createdtime__,new Date(),{addSuffix: true})}</span>
+                        <span className="text-gray-400">{discussPost && formatRelative(discussPost.data[0].__createdtime__, new Date())}</span>
 
 
                         <ReactMarkdown className="prose text-xl py-2">
@@ -66,7 +66,7 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
                 </div>
 
 
-                {authLoading ? <Skeleton height={100} className="my-4"/> :
+                {authLoading ? <Skeleton height={100} className="my-4" /> :
                     <div>
                         {!isAuthenticated ?
                             <div>
@@ -104,9 +104,9 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
                 <div>
                     {discussPost && discussPost.data[0].replies.map(reply => {
                         return <div className="bg-white border my-2 p-4 rounded">
-                            <div className="flex my-2">
+                            <div className="flex flex-row items-center my-2">
                                 <img src={profileImg} alt="profile" className="h-8 w-8" />
-                                <span className="text-xl text-gray-500 italic capitalize mx-2 ">{reply.userName}</span>
+                                <span className="text-md font-semibold text-gray-500  capitalize mx-2 ">{reply.userName}</span>
 
                             </div>
                             <ReactMarkdown className="prose text-xl mx-6">{reply.commentText}</ReactMarkdown>
