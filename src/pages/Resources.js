@@ -5,19 +5,18 @@ import { postResource, getAllResources } from '../actions/resources'
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import resourcesImg from '../assets/images/resources.png'
 import { Link } from 'react-router-dom'
-import Loader from '../components/Loader'
 import Skeleton from 'react-loading-skeleton';
+import { useForm } from 'react-hook-form';
 
 
 
 const Resources = ({ authloading, resources, isAuthenticated, postResource, getAllResources }) => {
 
-    const Tags = ['Design', 'Tools', 'CSS', 'UI/UX', 'Web dev', 'Marketing', 'Writing', 'Hackathons', 'Others']
+    const Tags = ['Design', 'Tools', 'UI/UX', 'Web dev', 'Blogs', 'Marketing', 'Hackathons', 'Writing', 'Podcasts', 'Others']
 
     const [resourceCategory, setResourceCategory] = useState('');
-    const [resourceUrl, setResourceUrl] = useState('')
     const [selectedTag, setSelectedTag] = useState('')
-    const [loading, setLoading] = useState(false)
+    const { register, handleSubmit } = useForm();
 
 
 
@@ -28,14 +27,14 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
     }, [getAllResources, selectedTag])
 
 
-    const handleSubmit = () => {
-        if (resourceUrl === '') {
-            return false;
-        } else {
-            setLoading(true)
-            postResource({ resourceCategory, resourceUrl })
+    const addResource = (data) => {
+        const { resourceUrl } = data;
 
-        }
+        postResource({ resourceCategory, resourceUrl });
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000)
+
     }
 
 
@@ -100,10 +99,12 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
                             </div>
                             :
                             <div className="md:sticky mb-12 md:mb-1 md:top-20 h-60 bg-white border-2 p-6 m-4  ">
-                                <form>
+                                <form onSubmit={handleSubmit(addResource)}>
                                     <input
                                         required
-                                        onChange={(e) => setResourceUrl(e.target.value)}
+                                        {...register("resourceUrl")}
+
+                                        // onChange={(e) => setResourceUrl(e.target.value)}
                                         placeholder="Share a resource url"
                                         className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
 
@@ -114,22 +115,23 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
                                             className="block w-full bg-white text-purple-500 font-semibold focus:outline-none"
                                         >
                                             <option>UI/UX</option>
-                                            <option>CSS</option>
                                             <option>Tools</option>
                                             <option>Design</option>
+                                            <option>Blogs</option>
                                             <option>Web dev</option>
                                             <option>Marketing</option>
-                                            <option>Writing</option>
                                             <option>Hackathons</option>
+                                            <option>Writing</option>
+                                            <option>Podcasts</option>
                                             <option>Others</option>
 
                                         </select>
 
                                     </div>
                                     <button
-                                        onClick={() => { handleSubmit() }}
+                                        type="submit"
                                         className=" flex mx-auto text-xl bg-gray-700 text-white p-2 px-4 my-2 rounded">
-                                        Submit {loading ? <Loader /> : <span></span>}
+                                        Submit
                                     </button>
                                 </form>
                             </div>
@@ -138,7 +140,7 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
                     </div>
 
                     }
-                    <div className="bg-white border p-6 m-4 md:sticky md:top-40">
+                    <div className="bg-white border p-4 m-4 md:sticky md:top-40">
                         <h1 className="text-xl font-semibold">Categories</h1>
                         <div className="flex flex-row flex-wrap py-4">
                             <span
