@@ -32,6 +32,7 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
 
     }
 
+   
     return (
         <div className="flex flex-col bg-gray-50 ">
 
@@ -50,7 +51,7 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
                                 {`Posted by ${discussPost && discussPost.data[0].userName}`}
                             </span>
                         </div>
-                        <span className="text-gray-400">{formatDistance(discussPost && discussPost.data[0].__createdtime__, new Date(), { addSuffix: true })}</span>
+                        <span className="text-gray-400">{formatDistance(discussPost && discussPost.data[0].__createdtime__,new Date(),{addSuffix: true})}</span>
 
 
                         <ReactMarkdown className="prose text-xl py-2">

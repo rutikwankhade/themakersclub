@@ -69,7 +69,7 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                 </a>
                             </div>
                             <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
-                            <span className="text-gray-400 py-2">{formatDistance(showcasePost && showcasePost.data[0].__createdtime__, new Date(),{addSuffix: true}).toLocaleString()}</span>
+                            <span className="text-gray-400 py-2">{showcasePost && formatDistance(showcasePost.data[0].__createdtime__, new Date(),{addSuffix: true})}</span>
                         </div>
                     }
                 </div>
@@ -82,7 +82,7 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                 <div >
                                     <Link to="/login">
                                         <button className="w-full mx-auto my-4 focus:outline-none rounded-full bg-purple-400 hover:bg-gray-600 p-4 text-white text-2xl ">
-                                            Login to provide feedback
+                                            Login to submit feedback
                                         </button>
                                     </Link>
 
