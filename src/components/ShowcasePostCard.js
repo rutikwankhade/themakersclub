@@ -5,32 +5,30 @@ import linkIcon from '../assets/icons/link.svg'
 
 
 
-const ShowcasePostcard = ({ post: { id,showcaseTitle, showcaseUrl, userId, userName, showcaseText } }) => {
+const ShowcasePostcard = ({ post: { id, showcaseTitle, showcaseUrl, userId, userName, showcaseText } }) => {
 
 
     return (
-        <div className="border p-6 my-2 rounded-md bg-white">
-            <h1 className=" capitalize text-2xl px-4 font-semibold">{ showcaseTitle && showcaseTitle}</h1>
+        <div className="border p-4 rounded-md bg-white">
+            <Link to={`/posts/${id}`}>
 
-            <p className="text-xl p-4 mb-2 ">{showcaseText}</p>
+                <div className="flex flex-row items-center">
 
-            <div className="flex flex-row ">
+                    <div className="md:w-10/12">
+                        <h1 className=" capitalize text-xl px-4 font-semibold">{showcaseTitle && showcaseTitle}</h1>
+                        <p className="text-lg p-4 mb-2 ">{showcaseText}</p>
+                    </div>
 
-                <div className="flex m-2">
-                    <img src={profileImg} alt="profile" className="h-8 w-8" />
-                    <span className="md:text-xl text-md capitalize mx-2">{userName}</span>
+                    <div className="w-20 h-20 ml-auto mr-2 text-2xl border flex flex-col justify-center items-center">
+                        <span className="text-xl font-bold">12</span>
+                        <span className="opacity-70">
+                            ❤
+                        </span>
+                    </div>
+
                 </div>
+            </Link>
 
-                <div className="ml-auto mr-2 flex">
-                    <a href={showcaseUrl} target="_blank" rel="noreferrer">
-                        <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10 mx-4 bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
-                    </a>
-                    <Link to={`/posts/${id}`}>
-                        <button className="focus:outline-none bg-purple-100 font-semibold opacity-80 border-2 hover:border-purple-400 text-purple-600 md:text-xl text-sm rounded h-10 px-4">Feedback</button>
-                    </Link>
-                </div>
-
-            </div>
 
         </div>
     );
