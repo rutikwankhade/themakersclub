@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import profileImg from '../assets/icons/profile.svg'
-import linkIcon from '../assets/icons/link.svg'
-
 
 
 const ShowcasePostcard = ({ post: { id, showcaseTitle, showcaseUrl, userId, userName, showcaseText } }) => {
 
 
     return (
-        <div className="border p-4 rounded-md bg-white">
+        <div className="border p-4 rounded-md bg-white hover:bg-purple-50">
             <Link to={`/posts/${id}`}>
 
                 <div className="flex flex-row items-center">
