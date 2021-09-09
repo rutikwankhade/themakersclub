@@ -11,6 +11,8 @@ import Login from './pages/Login';
 import Feedback from './pages/Feedback';
 import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
+import LeaderBoard from './pages/LeaderBoard';
+
 import PostNewDiscussion from './pages/PostNewDiscussion';
 import DiscussPost from './pages/DiscussPost';
 import ShowcasePost from './pages/ShowcasePost';
@@ -63,6 +65,8 @@ const App = () => {
               <Route exact path="/showcase-feedback" component={Feedback} />
               <Route exact path="/discussions" component={Discussions} />
               <Route exact path="/resources" component={Resources} />
+              <Route exact path="/leaderboard" component={LeaderBoard} />
+
 
               <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
               <Route exact path="/discussions/:id" component={DiscussPost} />
