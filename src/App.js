@@ -12,6 +12,8 @@ import Feedback from './pages/Feedback';
 import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
 import LeaderBoard from './pages/LeaderBoard';
+import MyProfile from './pages/MyProfile';
+
 
 import PostNewDiscussion from './pages/PostNewDiscussion';
 import DiscussPost from './pages/DiscussPost';
@@ -67,8 +69,9 @@ const App = () => {
               <Route exact path="/resources" component={Resources} />
               <Route exact path="/leaderboard" component={LeaderBoard} />
 
-
               <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
+
+              <PrivateRoute exact path="/my-profile" component={MyProfile} />
               <Route exact path="/discussions/:id" component={DiscussPost} />
               <Route exact path="/posts/:id" component={ShowcasePost} />
 

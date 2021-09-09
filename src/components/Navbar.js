@@ -4,11 +4,11 @@ import profileIcon from '../assets/icons/profile.svg'
 import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton';
 import logoutIcon from '../assets/icons/logout.svg'
-import {logout} from '../actions/auth'
+import { logout } from '../actions/auth'
 
 
 
-const Navbar = ({ isAuthenticated, loading, userName ,logout}) => {
+const Navbar = ({ isAuthenticated, loading, userName, logout }) => {
     return (
         <div className="bg-white  p-4 flex">
             <Link to="/">
@@ -31,18 +31,21 @@ const Navbar = ({ isAuthenticated, loading, userName ,logout}) => {
                             </div>
                             :
                             <div className="flex ml-auto mr-4 ">
-                                <div className="flex mx-2 border-2 px-2 py-1 rounded-full">
-                                    <h1 className=" capitalize text-xl font-semibold mx-4 ">
-                                        {userName}
-                                    </h1>
-                                    <img src={profileIcon} alt="me" className="flex h-8 w-8 " />
+                                <Link to="/my-profile" >
 
-                                </div>
+                                    <div className="flex mx-2 border-2 px-2 py-1 rounded-full">
+                                        <h1 className=" capitalize text-xl font-semibold mx-4 ">
+                                            {userName}
+                                        </h1>
+                                        <img src={profileIcon} alt="me" className="flex h-8 w-8 " />
 
+                                    </div>
+
+
+                                </Link>
                                 <img
-                                    onClick={()=>logout()}
+                                    onClick={() => logout()}
                                     src={logoutIcon} alt="logout" className="cursor-pointer hover:bg-red-100 rounded-full flex h-10 w-10 p-1" />
-
                             </div>
                         }
 
