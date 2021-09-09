@@ -24,7 +24,7 @@ const Sidebar = () => {
                 <img src={resourceIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
             </NavLink>
 
-            <NavLink to="/leaderboard" className="pl-2" >
+            <NavLink to="/leaderboard" className="pl-1" activeClassName="bg-purple-100 rounded">
                 <img src={trophyIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
             </NavLink>
 

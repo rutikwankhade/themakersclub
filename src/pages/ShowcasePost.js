@@ -69,6 +69,8 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                 </a>
                             </div>
                             <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
+
+                            <img src={`https://capture-website-api.herokuapp.com/capture?url=${showcasePost.data[0].showcaseUrl}`} alt="screenshot" className="rounded my-2 border-2" />
                             <span className="text-gray-400 py-2">{showcasePost && formatRelative(showcasePost.data[0].__createdtime__, new Date())}</span>
                         </div>
                     }
