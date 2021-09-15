@@ -1,6 +1,9 @@
 import React from 'react';
 import Header from '../components/Header'
 
+import heroImg from '../assets/images/hero.png'
+
+
 import feedbackImg from '../assets/images/review.png'
 import discussionsImg from '../assets/images/discussions.png'
 import resourcesImg from '../assets/images/resources.png'
@@ -11,14 +14,28 @@ const Home = () => {
     return (
         <div>
 
-            <Header />
-            <div className="flex flex-row flex-wrap justify-center md:justify-start m-4">
-                <div className="rounded m-2 p-6 bg-yellow-100 text-5xl opacity-80">👨‍💻</div>
-                <div className="rounded m-2 p-6 bg-green-100 text-5xl opacity-80">🛠</div>
-                <div className="rounded m-2 p-6 bg-pink-100 text-5xl opacity-80">‍💬</div>
-                <div className="rounded m-2 p-6 bg-purple-100 text-5xl opacity-80">🚀</div>
+            {/* <Header /> */}
+
+
+            <div className="bg-purple-400 rounded-md p-20">
+<h1 className="text-5xl font-bold text-white p-4">A club of ideas, feedbacks and resources</h1>
+
+                <div className="flex items-center">
+
+
+                    <div className="flex flex-row flex-wrap justify-center  m-4 w-4/12">
+                <div className="h-28 rounded m-2 p-6 bg-yellow-100 text-5xl opacity-80 shadow-2xl">👨‍💻</div>
+                <div className="h-28 rounded m-2 p-6 bg-green-100 text-5xl opacity-80 shadow-2xl">🛠</div>
+                <div className="h-28 rounded m-2 p-6 bg-pink-100 text-5xl opacity-80 shadow-2xl">‍💬</div>
+                <div className="h-28 rounded m-2 p-6 bg-purple-100 text-5xl opacity-80 shadow-2xl">🚀</div>
 
             </div>
+                                    <img src={heroImg} className="w-8/12"/>
+
+
+                </div>
+            </div>
+            
 
             <div className="mt-20 ">
                 <h1 className="text-4xl text-center mb-10 font-semibold">How it works?</h1>
