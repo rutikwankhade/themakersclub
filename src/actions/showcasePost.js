@@ -22,7 +22,7 @@ export const addShowcasePost = ({ showcaseUrl, showcaseText, showcaseTitle }) =>
     const body = JSON.stringify({ showcaseUrl, showcaseText, showcaseTitle })
 
     try {
-        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/showcase`, body, config);
+        const res = await axios.post('https://themakersclubapp.herokuapp.com/api/showcase', body, config);
 
         dispatch({
             type: ADD_SHOWCASE_POST,
@@ -48,7 +48,7 @@ export const getAllShowcasePosts = () => async dispatch => {
 
     try {
 
-        const res = await axios.get(`${process.env.BACKEND_API_ENDPOINT}/api/showcase`);
+        const res = await axios.get('https://themakersclubapp.herokuapp.com/api/showcase');
 
         dispatch({
             type: GET_SHOWCASE_POSTS,
@@ -71,7 +71,7 @@ export const getShowcasePost = (id) => async dispatch => {
 
     try {
 
-        const res = await axios.get(`${process.env.BACKEND_API_ENDPOINT}/api/showcase/${id}`);
+        const res = await axios.get(`https://themakersclubapp.herokuapp.com/api/showcase/${id}`);
 
         dispatch({
             type: GET_SHOWCASE_POST,
@@ -104,7 +104,7 @@ export const addFeedback = (postId, { feedbackText, feedbackType }) => async dis
 
 
     try {
-        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/showcase/feedback/${postId}`, body, config);
+        const res = await axios.post(`https://themakersclubapp.herokuapp.com/api/showcase/feedback/${postId}`, body, config);
         console.log(res)
         dispatch({
             type: ADD_FEEDBACK,
