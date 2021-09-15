@@ -67,25 +67,25 @@ const Home = () => {
                     </div>
 
 
-                    <div className="border p-10 rounded md:m-10 m-4 flex">
+                    <div className="border shadow-xl p-10 rounded md:w-10/12 mx-auto mt-40 flex ">
 
-                        <div className=" md:text-left flex md:flex-row flex-col">
+                        <div className=" md:text-left flex md:flex-row flex-col items-center ">
                             <img src="https://rutikwankhade.dev/rutikwankhade.webp" alt="rutik wankhade"
-                                className="rounded-full h-24 w-24 m-4 opacity-80 md:ml-auto mr-2 " />
+                                className="rounded h-52 w-52 m-4 opacity-90 md:ml-auto  " />
 
                             <div className="m-4 md:w-2/3">
-                                <h1 className="text-2xl font-semibold">Meet the Maker</h1>
-                                <p className="text-xl py-2">👋 Hi I am Rutik. I am a Frontend Developer, an avid learner and passionate about building things with code.</p>
+                                <h1 className="md:text-4xl text-3xl font-bold">👋 Hi, I'm Rutik</h1>
+                                <p className="text-xl py-2 px-4">Maker of <span className="text-purple-400 font-semibold">themakersclub</span>, I am a Frontend Developer who loves building side projects.</p>
 
-                                <div className="flex w-32 ml-0 rounded bg-blue-400 hover:bg-blue-500 text-xl text-white px-2 py-1 mx-auto">
+                                <div className="flex md:w-1/2  md:ml-4 rounded bg-blue-400 hover:bg-blue-500 text-xl text-white px-2 py-1 mx-auto">
                                     <img src={twitterIcon} alt="twitter" className="h-8 w-8  text-white mx-2" />
 
                                     <a className="twitter-follow-button "
                                         href="https://twitter.com/WankhadeRutik"
                                         target="_blank"
                                         rel="noreferrer"
-                                        data-size="large">
-                                        Follow </a>
+                                    >
+                                        Follow me on Twitter </a>
                                 </div>
                             </div>
 
