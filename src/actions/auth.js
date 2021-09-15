@@ -37,7 +37,7 @@ export const loadUser = () => async dispatch => {
 
 //register user
 
-export const register = ({ username, email, password }) => async dispatch => {
+export const register = ({ name, email, password }) => async dispatch => {
 
     const config = {
         headers: {
@@ -45,7 +45,7 @@ export const register = ({ username, email, password }) => async dispatch => {
         }
     }
 
-    const body = JSON.stringify({ username, email, password })
+    const body = JSON.stringify({ name, email, password })
 
     try {
         const res = await axios.post('https://themakersclubapp.herokuapp.com/api/users', body, config);
@@ -70,7 +70,7 @@ export const register = ({ username, email, password }) => async dispatch => {
 
 //login user
 
-export const login = (email, password) => async dispatch => {
+export const login = ( email, password ) => async dispatch => {
 
     const config = {
         headers: {

@@ -15,13 +15,13 @@ const Signup = ({ signup, isAuthenticated }) => {
 
     const handleSignup = data => {
 
-        const { username, email, password } = data
+        const { name, email, password } = data
         if (data.password !== data.confirmPassword) {
             setError('Passwords didnt match.')
 
         }
         console.log(data);
-        signup({ username, email, password });
+        signup({ name, email, password });
     }
 
     if (isAuthenticated) {
@@ -47,7 +47,7 @@ const Signup = ({ signup, isAuthenticated }) => {
                                 type="text"
                                 placeholder="Name"
                                 className="text-lg m-2 bg-gray-100 py-2 px-4 w-full rounded"
-                                {...register("username")}
+                                {...register("name")}
                             />
 
                             <input

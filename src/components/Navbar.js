@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
     isAuthenticated: state.authReducer.isAuthenticated,
     loading: state.authReducer.loading,
 
-    userName: state.authReducer.user && state.authReducer.user.data[0].username
+    userName: state.authReducer.user && state.authReducer.user.name
 });
 
 export default connect(
