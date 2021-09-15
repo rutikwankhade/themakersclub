@@ -12,6 +12,7 @@
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
     "date-fns": "^2.22.1",
+    "dotenv": "^10.0.0",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

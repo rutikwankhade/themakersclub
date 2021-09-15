@@ -19,7 +19,7 @@ export const postResource = ({ resourceUrl, resourceCategory }) => async dispatc
     const body = JSON.stringify({ resourceUrl, resourceCategory })
 
     try {
-        const res = await axios.post('https://themakersclub.herokuapp.com/api/resources', body, config);
+        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/resources`, body, config);
 
         dispatch({
             type: ADD_RESOURCE,
@@ -42,7 +42,7 @@ export const getAllResources = () => async dispatch => {
 
     try {
 
-        const res = await axios.get('https://themakersclub.herokuapp.com/api/resources');
+        const res = await axios.get(`${process.env.BACKEND_API_ENDPOINT}/api/resources`);
 
         dispatch({
             type: GET_ALL_RESOURCES,

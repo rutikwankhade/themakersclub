@@ -19,7 +19,7 @@ export const loadUser = () => async dispatch => {
     }
 
     try {
-        const res = await axios.get('https://themakersclub.herokuapp.com/api/auth');
+        const res = await axios.get(`${process.env.BACKEND_API_ENDPOINT}/api/auth`);
         dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -48,7 +48,7 @@ export const register = ({ username, email, password }) => async dispatch => {
     const body = JSON.stringify({ username, email, password })
 
     try {
-        const res = await axios.post('https://themakersclub.herokuapp.com/api/users', body, config);
+        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/users`, body, config);
 
         dispatch({
             type: REGISTER_SUCCESS,
@@ -81,7 +81,7 @@ export const login = (email, password) => async dispatch => {
     const body = JSON.stringify({ email, password })
 
     try {
-        const res = await axios.post('https://themakersclub.herokuapp.com/api/auth', body, config);
+        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/auth`, body, config);
 
         dispatch({
             type: LOGIN_SUCCESS,

@@ -14,7 +14,7 @@ export const getDiscussPosts = () => async dispatch => {
 
     try {
 
-        const res = await axios.get('https://themakersclub.herokuapp.com/api/discuss-posts');
+        const res = await axios.get(`${process.env.BACKEND_API_ENDPOINT}/api/discuss-posts`);
 
         dispatch({
             type: GET_DISCUSS_POSTS,
@@ -37,7 +37,7 @@ export const getDiscussPost = (id) => async dispatch => {
 
     try {
 
-        const res = await axios.get(`https://themakersclub.herokuapp.com/api/discuss-posts/${id}`);
+        const res = await axios.get(`${process.env.BACKEND_API_ENDPOINT}/api/discuss-posts/${id}`);
 
         dispatch({
             type: GET_DISCUSS_POST,
@@ -67,7 +67,7 @@ export const addDiscussPost = ({ postTitle, postText }) => async dispatch => {
     const body = JSON.stringify({ postTitle, postText })
 
     try {
-        const res = await axios.post('https://themakersclub.herokuapp.com/api/discuss-posts', body, config);
+        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/discuss-posts`, body, config);
 
         dispatch({
             type: ADD_DISCUSS_POST,
@@ -98,7 +98,7 @@ export const addDiscussComment = (postId, { commentText }) => async dispatch => 
 
 
     try {
-        const res = await axios.post(`https://themakersclub.herokuapp.com/api/discuss-posts/comment/${postId}`, body, config);
+        const res = await axios.post(`${process.env.BACKEND_API_ENDPOINT}/api/discuss-posts/comment/${postId}`, body, config);
         console.log(res)
         dispatch({
             type: ADD_DISCUSS_COMMENT,
