@@ -25,7 +25,7 @@ const Discussions = ({ loading, getDiscussPosts, discussPosts, isAuthenticated }
                     </p>
                     <Link to="/post-discussion" className="sticky top-20">
                         <button className="px-6 my-4 cursor-pointer bg-purple-400 hover:bg-purple-500 focus:outline-none text-white rounded-full text-center p-2 text-2xl font-semibold">
-                            {isAuthenticated?'Start a discussion':'Login to start a discussion'}
+                            {isAuthenticated ? 'Start a discussion' : 'Login to start a discussion'}
                         </button>
 
                     </Link>
@@ -41,19 +41,19 @@ const Discussions = ({ loading, getDiscussPosts, discussPosts, isAuthenticated }
 
 
 
-                    <div className="flex flex-col bg-gray-50 justify-center md:w-8/12 md:pb-20">
+                <div className="flex flex-col bg-gray-50 justify-center md:w-8/12 md:pb-20">
 
                     {
 
-                            discussPosts.data && discussPosts.data.map(post => {
-                                return <Link to={`/discussions/${post.id}`}>
-                                    {loading ? <Skeleton height={ 200}/>:<DiscussPostcard post={post} />}
-                                </Link>
+                        discussPosts && discussPosts.map(post => {
+                            return <Link to={`/discussions/${post._id}`}>
+                                {loading ? <Skeleton height={200} /> : <DiscussPostcard post={post} />}
+                            </Link>
 
-                            })
-                        }
-                    </div>
-                
+                        })
+                    }
+                </div>
+
 
                 <div className="md:w-4/12 flex flex-col items-center">
 
@@ -78,7 +78,7 @@ const Discussions = ({ loading, getDiscussPosts, discussPosts, isAuthenticated }
 const mapStateToProps = state => ({
     discussPosts: state.discussPostReducer.discussPosts,
     isAuthenticated: state.authReducer.isAuthenticated,
-        loading: state.discussPostReducer.loading,
+    loading: state.discussPostReducer.loading,
 
 })
 

@@ -14,7 +14,7 @@ export const getDiscussPosts = () => async dispatch => {
 
     try {
 
-        const res = await axios.get('https://themakersclubapp.herokuapp.com/api/discuss-posts');
+        const res = await axios.get('https://themakersclubapp.herokuapp.com/api/discuss-post');
 
         dispatch({
             type: GET_DISCUSS_POSTS,
@@ -37,7 +37,7 @@ export const getDiscussPost = (id) => async dispatch => {
 
     try {
 
-        const res = await axios.get(`https://themakersclubapp.herokuapp.com/api/discuss-posts/${id}`);
+        const res = await axios.get(`https://themakersclubapp.herokuapp.com/api/discuss-post/${id}`);
 
         dispatch({
             type: GET_DISCUSS_POST,
@@ -67,7 +67,7 @@ export const addDiscussPost = ({ postTitle, postText }) => async dispatch => {
     const body = JSON.stringify({ postTitle, postText })
 
     try {
-        const res = await axios.post('https://themakersclubapp.herokuapp.com/api/discuss-posts', body, config);
+        const res = await axios.post('https://themakersclubapp.herokuapp.com/api/discuss-post', body, config);
 
         dispatch({
             type: ADD_DISCUSS_POST,
@@ -85,7 +85,7 @@ export const addDiscussPost = ({ postTitle, postText }) => async dispatch => {
 // ADD COMMENT ON DISCUSS POST
 
 
-export const addDiscussComment = (postId, { commentText }) => async dispatch => {
+export const addDiscussComment = (postId, { replyText }) => async dispatch => {
 
     const config = {
         headers: {
@@ -93,12 +93,12 @@ export const addDiscussComment = (postId, { commentText }) => async dispatch => 
         }
     }
 
-    const body = JSON.stringify({ commentText })
+    const body = JSON.stringify({ replyText })
     // console.log(body)
 
 
     try {
-        const res = await axios.post(`https://themakersclubapp.herokuapp.com/api/discuss-posts/comment/${postId}`, body, config);
+        const res = await axios.post(`https://themakersclubapp.herokuapp.com/api/discuss-post/replies/${postId}`, body, config);
         console.log(res)
         dispatch({
             type: ADD_DISCUSS_COMMENT,

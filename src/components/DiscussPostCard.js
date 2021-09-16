@@ -1,10 +1,9 @@
 import React from 'react';
-import profileImg from '../assets/icons/profile.svg'
 import ReactMarkdown from 'react-markdown';
 import discussIcon from '../assets/icons/discuss.svg'
 
 
-const DiscussPostcard = ({ post: { postTitle, replies, userId, userName, postText } }) => {
+const DiscussPostcard = ({ post: { title, replies, user, avatar, name, text } }) => {
 
 
     return (
@@ -12,15 +11,15 @@ const DiscussPostcard = ({ post: { postTitle, replies, userId, userName, postTex
             <div className=" ">
 
                 <div className="flex flex-row items-center md:w-10/12">
-                    <h1 className="text-xl font-semibold">{postTitle}</h1>
+                    <h1 className="text-xl font-semibold">{title}</h1>
                 </div>
-                <ReactMarkdown className="md:w-11/12 text-lg">{`${postText.substring(0, 130)}..`}</ReactMarkdown>
+                <ReactMarkdown className="md:w-11/12 text-lg">{`${text.substring(0, 130)}..`}</ReactMarkdown>
 
 
                 <div className="flex flex-row items-center">
-                    <img src={profileImg} alt="profile" className="h-6 w-6 m-2" />
+                    <img src={avatar} alt="profile" className="h-6 w-6 rounded-full m-2" />
 
-                    <span className="text-md capitalize ">{userName}</span>
+                    <span className="text-md capitalize ">{name}</span>
                 </div>
 
             </div>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import profileImg from '../assets/icons/profile.svg'
 import ReactMarkdown from 'react-markdown';
 
 import { connect } from 'react-redux';
@@ -9,7 +8,7 @@ import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
 
 
-import { formatRelative } from 'date-fns'
+// import { formatRelative } from 'date-fns'
 
 
 const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match }) => {
@@ -19,13 +18,14 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
 
     useEffect(() => {
         getDiscussPost(match.params.id);
+        console.log(match.params.id)
     }, [getDiscussPost, match]);
 
 
     const replyPost = (data) => {
-        const { commentText } = data;
+        const { replyText } = data;
 
-        addDiscussComment(discussPost.data[0].id, { commentText })
+        addDiscussComment(discussPost._id, { replyText })
         setTimeout(() => {
             window.location.reload()
         }, 2000)
@@ -34,31 +34,37 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
 
 
     return (
-        <div className="flex flex-col bg-gray-50 ">
+        <div className="flex flex-col bg-gray-50  ">
 
             <div className='md:m-10 m-2 md:w-8/12 md:mx-20'>
 
                 <div className="md:p-12 p-6 border rounded bg-white " >
                     {loading ? <Skeleton height={30} count={5} /> : <div>
 
-                        <h1 className="text-3xl capitalize font-bold text-purple-400">
-                            {discussPost && discussPost.data[0].postTitle}
+                        <h1 className="text-3xl capitalize font-bold text-gray-700">
+                            {discussPost && discussPost.title}
                         </h1>
 
-                        <div className="flex my-4">
-                            <img src={profileImg} alt="profile" className="h-8 w-8" />
-                            <span className="text-xl text-gray-500 italic capitalize mx-2 ">
-                                {`Posted by ${discussPost && discussPost.data[0].userName}`}
-                            </span>
-                        </div>
-                        <span className="text-gray-400">{discussPost && formatRelative(discussPost.data[0].__createdtime__, new Date())}</span>
-
-
                         <ReactMarkdown className="prose text-xl py-2">
-                            {discussPost && discussPost.data[0].postText}
+                            {discussPost && discussPost.text}
                         </ReactMarkdown>
+
+
+                        <div className="flex items-center">
+                            <div className="flex my-4">
+                                <img src={discussPost.avatar} alt="profile" className="h-8 w-8 rounded-full" />
+                                <span className="text-xl text-gray-500 italic capitalize mx-2 ">
+                                    {`Posted by ${discussPost && discussPost.name}`}
+                                </span>
+                            </div>
+                            <span className="text-gray-400 ml-auto mr-4">{discussPost.date}</span>
+                        </div>
+
+
+
+
                         <h2 className=" w-40 my-4 text-xl font-semibold italic border-2 p-2 rounded text-pink-400 text-center">
-                            {`${discussPost && discussPost.data[0].replies.length} Replies`}
+                            {`${discussPost && discussPost.replies.length} Replies`}
                         </h2>
 
                     </div>
@@ -77,11 +83,11 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
                                 </Link>
                             </div> :
                             <div>
-                                <div className="border-2 p-6 bg-white my-4 rounded md:mb-2 mb-20">
+                                <div className="border md:p-10 bg-white my-4 rounded md:mb-2 mb-20">
                                     <form onSubmit={handleSubmit(replyPost)}>
                                         <textarea
                                             required
-                                            {...register("commentText")}
+                                            {...register("replyText")}
                                             placeholder="Say something nice..!"
                                             className="w-full bg-gray-50 p-4 border-2 border-purple-300 text-xl focus:outline-none rounded my-2"
                                         />
@@ -102,14 +108,14 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
 
 
                 <div>
-                    {discussPost && discussPost.data[0].replies.map(reply => {
+                    {discussPost && discussPost.replies.map(reply => {
                         return <div className="bg-white border my-2 p-4 rounded">
                             <div className="flex flex-row items-center my-2">
-                                <img src={profileImg} alt="profile" className="h-8 w-8" />
-                                <span className="text-md font-semibold text-gray-500  capitalize mx-2 ">{reply.userName}</span>
+                                <img src={reply.avatar} alt="profile" className="h-8 w-8 rounded-full" />
+                                <span className="text-md font-semibold text-gray-500  capitalize mx-2 ">{reply.name}</span>
 
                             </div>
-                            <ReactMarkdown className="prose text-xl mx-6">{reply.commentText}</ReactMarkdown>
+                            <ReactMarkdown className="prose text-xl mx-6">{reply.text}</ReactMarkdown>
                         </div>
                     })}
 
