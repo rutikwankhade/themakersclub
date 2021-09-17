@@ -52,12 +52,12 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
 
                         <div className="flex items-center">
                             <div className="flex my-4">
-                                <img src={discussPost.avatar} alt="profile" className="h-8 w-8 rounded-full" />
+                                <img src={discussPost && discussPost.avatar} alt="profile" className="h-8 w-8 rounded-full" />
                                 <span className="text-xl text-gray-500 italic capitalize mx-2 ">
                                     {`Posted by ${discussPost && discussPost.name}`}
                                 </span>
                             </div>
-                            <span className="text-gray-400 ml-auto mr-4">{discussPost.date}</span>
+                            <span className="text-gray-400 ml-auto mr-4">{discussPost && discussPost.date}</span>
                         </div>
 
 
