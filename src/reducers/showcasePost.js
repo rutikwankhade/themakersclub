@@ -26,7 +26,7 @@ export default function showcasePostReducer( state = initialState, action) {
         case ADD_SHOWCASE_POST:
             return {
                 ...state,
-                showcasePosts: [...state.discussPosts, payload],
+                showcasePosts: [...state.showcasePosts, payload],
                 loading: false
             }
         

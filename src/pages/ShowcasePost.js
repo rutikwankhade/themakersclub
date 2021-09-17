@@ -7,7 +7,7 @@ import linkIcon from '../assets/icons/link.svg'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
 
-import { formatRelative } from 'date-fns'
+// import { formatRelative } from 'date-fns'
 
 
 const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
@@ -62,16 +62,17 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                     {loading ? <Skeleton count={4} height={30} /> :
                         <div>
                             <div className="flex">
-                                <h1 className="md:text-3xl text-2xl capitalize py-2 font-semibold">{showcasePost && showcasePost.data[0].showcaseTitle}</h1>
+                                <h1 className="md:text-3xl text-2xl capitalize py-2 font-semibold">{showcasePost && showcasePost.title}</h1>
 
-                                <a href={showcasePost && showcasePost.data[0].showcaseUrl} target="_blank" rel="noreferrer" className="ml-auto mr-4 ">
+                                <a href={showcasePost && showcasePost.url} target="_blank" rel="noreferrer" className="ml-auto mr-4 ">
                                     <img src={linkIcon} alt="profile" className=" cursor-pointer h-10 w-10  bg-pink-100  hover:bg-purple-100 rounded-full p-2" />
                                 </a>
                             </div>
-                            <p className="text-xl py-2">{showcasePost && showcasePost.data[0].showcaseText}</p>
-
-                            <img src={`https://capture-website-api.herokuapp.com/capture?url=${showcasePost.data[0].showcaseUrl}`} alt="screenshot" className="rounded my-2 border-2" />
-                            <span className="text-gray-400 py-2">{showcasePost && formatRelative(showcasePost.data[0].__createdtime__, new Date())}</span>
+                            <p className="text-xl py-2">{showcasePost && showcasePost.desc}</p>
+                            <div className="p-2 my-2 border rounded shadow-sm">
+                                <img src={`https://capture-website-api.herokuapp.com/capture?url=${showcasePost && showcasePost.url}`} alt="screenshot" className=" my-2" />
+                            </div>
+                            <span className="text-gray-400 ">{showcasePost && showcasePost.date}</span>
                         </div>
                     }
                 </div>
@@ -132,17 +133,17 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
 
 
 
-                {showcasePost && showcasePost.data[0].feedbacks.map(feedback => {
+                {showcasePost && showcasePost.feedbacks.map(feedback => {
                     return <div className="border bg-white p-10 my-4 ">
                         <div className="flex md:flex-row flex-col-reverse md:items-center">
                             <div className="flex flex-row  items-center md:mt-2 mt-6 md:my-0">
-                                <img src={profileImg} alt="profile" className="md:w-7 md:h-7 mx-2" />
-                                <span className="text-md capitalize font-semibold text-gray-600">{feedback.userName}</span>
+                                <img src={feedback.avatar} alt="profile" className="w-6 h-6 rounded-full mx-2" />
+                                <span className="text-md capitalize font-semibold text-gray-600">{feedback.name}</span>
                             </div>
                             <span className={` rounded-full text-center md:ml-auto mr-2 font-semibold  text-lg px-4 py-1 ${tagColor(feedback.feedbackType)}`}>{feedback.feedbackType}</span>
 
                         </div>
-                        <p className="m-4 text-xl">{feedback.feedbackText}</p>
+                        <p className="m-4 text-xl">{feedback.feedback}</p>
 
                     </div>
                 })
@@ -158,12 +159,12 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                     <h1 className="text-xl text-right bg-purple-50 font-semibold px-4 p-2">Maker</h1>
                     <div className="flex flex-col justify-center items-center">
                         <img src={profileImg} alt="profile" className="w-24 h-24 mt-6" />
-                        <h3 className="my-2 text-xl  ">{showcasePost && showcasePost.data[0].userName}</h3>
+                        <h3 className="my-2 text-xl  ">{showcasePost && showcasePost.name}</h3>
                     </div>
                 </div>
                 {loading ? <Skeleton height={50} className="my-2" />
                     : <div className="text-center font-semibold bg-white border p-2 my-2 text-xl">
-                        {`${showcasePost && showcasePost.data[0].feedbacks.length} Feedbacks`}
+                        {`${showcasePost && showcasePost.feedbacks.length} Feedbacks`}
                     </div>
                 }
 

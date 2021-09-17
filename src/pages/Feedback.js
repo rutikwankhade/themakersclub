@@ -40,14 +40,14 @@ const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, ge
 
                     <div className="flex md:flex-row flex-col bg-purple-100 my-2 ">
                         <div className=" m-10">
-                            <h1 className="text-4xl my-2 font-bold">Showcase and Feedback</h1>
-                            <p className="text-xl ">Showcase what you built and get constructive feedback from the members of the makersclub.</p>
+                            <h1 className="text-4xl my-2 font-bold">Showcase</h1>
+                            <p className="text-xl ">Showcase what you built and get constructive feedback from the community.</p>
                         </div>
                         <img src={feedbackImg} alt="review" className=" md:w-80 md:h-40 mt-auto mb-0 ml-auto mr-2 " />
                     </div>
 
                     <div>
-                        {showcasePosts.data && showcasePosts.data.map(post => {
+                        {showcasePosts && showcasePosts.map(post => {
                             return <ShowcasePostCard post={post} />
                         })}
 
