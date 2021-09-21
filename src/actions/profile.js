@@ -2,7 +2,9 @@ import axios from 'axios';
 import {
     EDIT_PROFILE,
     EDIT_PROFILE_ERROR,
-    UPDATE_POINTS
+    UPDATE_POINTS,
+    GET_TOP_MAKERS,
+    TOP_MAKERS_ERROR
 } from './types'
 
 
@@ -61,6 +63,29 @@ export const updatePoints = ({ points, boost }) => async dispatch => {
     } catch (err) {
         dispatch({
             type: EDIT_PROFILE_ERROR,
+            payload: { msg: err }
+        })
+
+    }
+}
+
+
+
+//get top maker profiles
+export const getTopMakers = () => async dispatch => {
+
+    try {
+
+        const res = await axios.get('https://themakersclubapp.herokuapp.com/api/profile');
+
+        dispatch({
+            type: GET_TOP_MAKERS,
+            payload: res.data
+        })
+
+    } catch (err) {
+        dispatch({
+            type: TOP_MAKERS_ERROR,
             payload: { msg: err }
         })
 

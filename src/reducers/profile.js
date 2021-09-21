@@ -1,12 +1,15 @@
 import {
     EDIT_PROFILE,
     EDIT_PROFILE_ERROR,
-    UPDATE_POINTS
+    UPDATE_POINTS,
+    GET_TOP_MAKERS,
+    TOP_MAKERS_ERROR
 } from '../actions/types'
 
 
 const initialState = {
     userProfile: {},
+    topMakers :[],
     loading: true,
     error: {}
 }
@@ -37,6 +40,20 @@ export default function profileReducer(state = initialState, action) {
                 ...state,
                 loading: false
             };
+        
+        case GET_TOP_MAKERS:
+            return {
+                ...state,
+                topMakers:payload ,
+                loading: false  
+            };
+        
+        case TOP_MAKERS_ERROR:
+            return {
+                ...state,
+                loading: false
+            };
+        
         default: return state;
     }
 
