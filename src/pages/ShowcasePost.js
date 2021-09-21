@@ -6,11 +6,12 @@ import profileImg from '../assets/icons/profile.svg'
 import linkIcon from '../assets/icons/link.svg'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
+import { updatePoints } from '../actions/profile'
 
 // import { formatRelative } from 'date-fns'
 
 
-const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match }) => {
+const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match, updatePoints, points }) => {
 
     const { register, handleSubmit } = useForm();
     const [feedbackType, setFeedbackType] = useState('🐞 Bug fix')
@@ -28,9 +29,14 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
         console.log(feedbackType, feedbackText);
         addFeedback(match.params.id, { feedbackType, feedbackText })
 
+        updatePoints({
+            points: points,
+            boost: 7
+        });
+
         setTimeout(() => {
             window.location.reload()
-        }, 2000)
+        }, 3000)
 
 
     }
@@ -179,9 +185,11 @@ const mapStateToProps = state => ({
     loading: state.showcasePostsReducer.loading,
 
     isAuthenticated: state.authReducer.isAuthenticated,
-    authLoading: state.authReducer.loading
+    authLoading: state.authReducer.loading,
+    points: state.profileReducer.userProfile.points
+
 
 
 })
 
-export default connect(mapStateToProps, { getShowcasePost, addFeedback })(ShowcasePost);
+export default connect(mapStateToProps, { getShowcasePost, addFeedback, updatePoints })(ShowcasePost);

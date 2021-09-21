@@ -6,13 +6,15 @@ import { addShowcasePost, getAllShowcasePosts } from '../actions/showcasePost'
 import feedbackImg from '../assets/images/review.png'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
-import {Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { updatePoints } from '../actions/profile'
 
 
 
-const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, getAllShowcasePosts }) => {
 
-   
+const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, getAllShowcasePosts, points, updatePoints }) => {
+
+
     const { register, handleSubmit } = useForm();
 
 
@@ -26,9 +28,14 @@ const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, ge
         console.log(showcaseUrl, showcaseText, showcaseTitle)
         addShowcasePost({ showcaseUrl, showcaseTitle, showcaseText });
 
+        updatePoints({
+            points: points,
+            boost: 10
+        });
+
         setTimeout(() => {
             window.location.reload()
-        }, 2000)
+        }, 3000)
 
     }
 
@@ -69,7 +76,7 @@ const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, ge
 
                                     </div>
                                     <Link to="/signup">
-                                    <button className="my-2 rounded bg-purple-400 hover:bg-purple-500 px-6 py-2 flex text-white text-2xl mx-auto">Sign up now</button></Link>
+                                        <button className="my-2 rounded bg-purple-400 hover:bg-purple-500 px-6 py-2 flex text-white text-2xl mx-auto">Sign up now</button></Link>
                                     <h1 className="text-xl font-semibold m-6 text-center">and share what you built with the makersclub.</h1>
                                 </div>
                                 :
@@ -120,9 +127,9 @@ const Feedback = ({ loading, isAuthenticated, showcasePosts, addShowcasePost, ge
 const mapStateToProps = state => ({
     showcasePosts: state.showcasePostsReducer.showcasePosts,
     isAuthenticated: state.authReducer.isAuthenticated,
-    loading: state.authReducer.loading
-
+    loading: state.authReducer.loading,
+    points: state.profileReducer.userProfile.points
 
 })
 
-export default connect(mapStateToProps, { addShowcasePost, getAllShowcasePosts })(Feedback);
+export default connect(mapStateToProps, { addShowcasePost, getAllShowcasePosts, updatePoints })(Feedback);

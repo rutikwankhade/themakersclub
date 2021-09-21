@@ -6,12 +6,13 @@ import { getDiscussPost, addDiscussComment } from '../actions/discussPost';
 import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton';
 import { useForm } from 'react-hook-form';
+import { updatePoints } from '../actions/profile'
 
 
 // import { formatRelative } from 'date-fns'
 
 
-const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match }) => {
+const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match, updatePoints, points }) => {
 
     const { register, handleSubmit } = useForm();
 
@@ -26,9 +27,15 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
         const { replyText } = data;
 
         addDiscussComment(discussPost._id, { replyText })
+
+        updatePoints({
+            points: points,
+            boost: 3
+        });
+
         setTimeout(() => {
             window.location.reload()
-        }, 2000)
+        }, 3000)
 
     }
 
@@ -131,9 +138,11 @@ const mapStateToProps = state => ({
     discussPost: state.discussPostReducer.discussPost,
     loading: state.discussPostReducer.loading,
     isAuthenticated: state.authReducer.isAuthenticated,
-    authLoading: state.authReducer.loading
+    authLoading: state.authReducer.loading,
+    points: state.profileReducer.userProfile.points
+
 
 
 })
 
-export default connect(mapStateToProps, { getDiscussPost, addDiscussComment })(DiscussPost);
+export default connect(mapStateToProps, { getDiscussPost, addDiscussComment, updatePoints })(DiscussPost);
