@@ -5,8 +5,6 @@ import { editProfile } from '../actions/profile';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 
-
-
 const EditProfile = ({ editProfile, loading }) => {
 
         const history = useHistory();

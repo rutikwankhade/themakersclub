@@ -2,7 +2,7 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL"
 export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR"
-export const LOGIN_SUCCESS ="LOGIN_SUCCESS"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAIL = "LOGIN_FAIL"
 export const LOGOUT = "LOGOUT"
 
@@ -24,7 +24,9 @@ export const GET_SHOWCASE_POST = "GET_SHOWCASE_POST"
 export const ADD_FEEDBACK = "ADD_FEEDBACK"
 
 export const EDIT_PROFILE = "EDIT_PROFILE"
-export const EDIT_PROFILE_ERROR ="EDIT_PROFILE_ERROR"
+export const EDIT_PROFILE_ERROR = "EDIT_PROFILE_ERROR"
+export const UPDATE_POINTS = "UPDATE_POINTS"
+
 
 
 

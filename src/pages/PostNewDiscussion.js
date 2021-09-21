@@ -6,24 +6,30 @@ import { useHistory } from 'react-router-dom'
 
 
 import { addDiscussPost } from '../actions/discussPost';
+import { updatePoints } from '../actions/profile'
 
 
-const PostNewDiscussion = ({ addDiscussPost, loading }) => {
+
+const PostNewDiscussion = ({ addDiscussPost, updatePoints, loading, points }) => {
     const history = useHistory();
 
-
     const { register, handleSubmit } = useForm();
+
 
     const handlePostSubmit = (data) => {
 
         console.log(data);
         addDiscussPost(data);
 
-        if (!loading) {
-            setTimeout(() => {
-                history.push('/discussions')
-            }, 2000)
-        }
+        updatePoints({
+            points: points,
+            boost: 5
+        });
+
+
+        setTimeout(() => {
+            history.push('/discussions')
+        }, 3000)
 
     }
 
@@ -63,12 +69,15 @@ const PostNewDiscussion = ({ addDiscussPost, loading }) => {
 
 
 PostNewDiscussion.propTypes = {
-    addDiscussPost: PropTypes.func.isRequired
+    addDiscussPost: PropTypes.func.isRequired,
+    updatePoints: PropTypes.func.isRequired
+
 };
 
 
 const mapStateToProps = state => ({
-    loading: state.discussPostReducer.loading
+    loading: state.discussPostReducer.loading,
+    points: state.profileReducer.userProfile.points
 })
 
-export default connect(mapStateToProps, { addDiscussPost })(PostNewDiscussion);
+export default connect(mapStateToProps, { addDiscussPost, updatePoints })(PostNewDiscussion);
