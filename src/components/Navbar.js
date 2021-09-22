@@ -8,7 +8,7 @@ import { logout } from '../actions/auth'
 
 
 
-const Navbar = ({ isAuthenticated, loading, userName, logout }) => {
+const Navbar = ({ isAuthenticated, loading, userName,fullName, logout }) => {
     return (
         <div className="bg-white  p-4 flex">
             <Link to="/">
@@ -31,11 +31,11 @@ const Navbar = ({ isAuthenticated, loading, userName, logout }) => {
                             </div>
                             :
                             <div className="flex ml-auto mr-4 ">
-                                <Link to="/my-profile" >
+                                <Link to={`/profile/${userName}`} >
 
                                     <div className="flex mx-2 border-2 px-2 py-1 rounded-full">
                                         <h1 className=" capitalize text-xl font-semibold mx-4 ">
-                                            {userName}
+                                            {fullName}
                                         </h1>
                                         <img src={profileIcon} alt="me" className="flex h-8 w-8 " />
 
@@ -62,7 +62,8 @@ const mapStateToProps = state => ({
     isAuthenticated: state.authReducer.isAuthenticated,
     loading: state.authReducer.loading,
 
-    userName: state.authReducer.user && state.authReducer.user.name
+    fullName: state.authReducer.user && state.authReducer.user.name,
+        userName: state.authReducer.user && state.authReducer.user.userName
 });
 
 export default connect(

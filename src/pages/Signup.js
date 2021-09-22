@@ -25,7 +25,7 @@ const Signup = ({ signup, isAuthenticated }) => {
     }
 
     if (isAuthenticated) {
-        return <Redirect to="/showcase-feedback" />
+        return <Redirect to="/edit-profile" />
     }
 
 

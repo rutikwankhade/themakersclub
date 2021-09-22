@@ -1,7 +1,7 @@
 import React from 'react';
 import editIcon from '../assets/icons/edit.svg'
 import {Link } from "react-router-dom"
-const MyProfile = () => {
+const UserProfile = () => {
     return (
         <div>
             <div className="bg-pink-300 w-full h-24 p-4"></div>
@@ -66,4 +66,4 @@ const MyProfile = () => {
     );
 }
 
-export default MyProfile;
+export default UserProfile;

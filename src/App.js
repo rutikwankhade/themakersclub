@@ -12,7 +12,7 @@ import Feedback from './pages/Feedback';
 import Resources from './pages/Resources';
 import Discussions from './pages/Discussions';
 import LeaderBoard from './pages/LeaderBoard';
-import MyProfile from './pages/MyProfile';
+import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
 
 
@@ -73,8 +73,8 @@ const App = () => {
 
               <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
 
-              <PrivateRoute exact path="/my-profile" component={MyProfile} />
-                            <PrivateRoute exact path="/edit-profile" component={EditProfile} />
+              <PrivateRoute exact path="/profile/:username" component={UserProfile} />
+              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
 
               <Route exact path="/discussions/:id" component={DiscussPost} />
               <Route exact path="/posts/:id" component={ShowcasePost} />

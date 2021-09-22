@@ -17,7 +17,7 @@ const LeaderBoard = ({ loading, getTopMakers, topMakers }) => {
 
 
     return (
-        <div>
+        <div className="bg-gray-50">
             <div>
                 <div className="flex md:flex-row flex-col bg-purple-100 my-2 ">
                     <div className=" m-10 md:w-1/2">
@@ -44,7 +44,7 @@ const LeaderBoard = ({ loading, getTopMakers, topMakers }) => {
 
                 </div>
 
-                <div className="md:w-1/3 mx-4 border bg-green-50 p-4">
+                <div className=" md:sticky md:top-40 h-full rounded md:w-1/3 mx-4 border bg-green-50 p-4">
                     <h1 className="text-2xl font-bold">How this works?</h1>
                     <p className="text-md py-2">The leaderboard is based on the maker points system. For every activity, a maker is rewarded with following points.</p>
 
@@ -71,8 +71,6 @@ const LeaderBoard = ({ loading, getTopMakers, topMakers }) => {
 
 
                 </div>
-
-
 
             </div>
 
