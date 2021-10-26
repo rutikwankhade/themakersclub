@@ -73,7 +73,7 @@ const App = () => {
 
               <PrivateRoute exact path="/post-discussion" component={PostNewDiscussion} />
 
-              <PrivateRoute exact path="/profile/:username" component={UserProfile} />
+              <PrivateRoute exact path="/profile/:id" component={UserProfile} />
               <PrivateRoute exact path="/edit-profile" component={EditProfile} />
 
               <Route exact path="/discussions/:id" component={DiscussPost} />

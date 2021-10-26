@@ -18,7 +18,7 @@ const EditProfile = ({ editProfile, loading }) => {
         editProfile(data);
         if (!loading) {
             setTimeout(() => {
-                history.push('/my-profile')
+                history.push('/showcase-feedback')
             }, 2000)
         }
 

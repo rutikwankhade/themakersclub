@@ -98,11 +98,11 @@ export const getTopMakers = () => async dispatch => {
 //GET MAKER PROFILE
 
 
-export const getMakerProfile = (username) => async dispatch => {
+export const getMakerProfile = ( id ) => async dispatch => {
 
     try {
 
-        const res = await axios.get(`https://themakersclubapp.herokuapp.com/api/profile/${username}`);
+        const res = await axios.get(`https://themakersclubapp.herokuapp.com/api/profile/${id}`);
 
         dispatch({
             type: GET_MAKER_PROFILE,
@@ -110,11 +110,7 @@ export const getMakerProfile = (username) => async dispatch => {
         })
 
     } catch (err) {
-        // dispatch({
-        //     type: DISCUSS_POST_ERROR,
-        //     payload: { msg: err }
-        // })
-
+     
          dispatch({
             type: TOP_MAKERS_ERROR,
             payload: { msg: err }

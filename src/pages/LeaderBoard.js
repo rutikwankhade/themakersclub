@@ -36,7 +36,7 @@ const LeaderBoard = ({ loading, getTopMakers, topMakers }) => {
                     {
                         topMakers.map((maker, index) => {
 
-                            return <Link to={`/makers/${maker._id}`}>
+                            return <Link to={`/profile/${maker._id}`}>
                                 {loading ? <Skeleton height={200} /> : <MakerCard maker={maker} rank={index + 1} />}
                             </Link>
                         })
