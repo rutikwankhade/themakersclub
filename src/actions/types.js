@@ -29,6 +29,8 @@ export const UPDATE_POINTS = "UPDATE_POINTS"
 
 export const GET_TOP_MAKERS = "GET_TOP_MAKERS"
 export const TOP_MAKERS_ERROR = "TOP_MAKERS_ERROR"
+export const GET_MAKER_PROFILE = "GET_MAKER_PROFILE"
+
 
 
 

@@ -6,9 +6,11 @@ import { Link, Redirect } from 'react-router-dom'
 import joinImg from '../assets/images/join.png'
 import { connect } from 'react-redux'
 import { register as signup } from '../actions/auth';
+import { editProfile } from '../actions/profile';
 
 
-const Signup = ({ signup, isAuthenticated }) => {
+
+const Signup = ({ signup, isAuthenticated, editProfile }) => {
 
     const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
@@ -22,6 +24,19 @@ const Signup = ({ signup, isAuthenticated }) => {
         }
         console.log(data);
         signup({ name, email, password });
+
+        let userName = name.split(' ').join('').toLowerCase();
+
+        const profile = {
+            bio: '',
+            website: '',
+            twitter: '',
+            github: '',
+            linkedin: '',
+            username: userName
+        }
+        editProfile(profile);
+
     }
 
     if (isAuthenticated) {
@@ -102,5 +117,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { signup }
+    { signup, editProfile }
 )(Signup);

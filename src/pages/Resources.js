@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 
 import { connect } from 'react-redux';
 import { postResource, getAllResources } from '../actions/resources'
@@ -15,8 +15,10 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
     const Tags = ['Design', 'Tools', 'UI/UX', 'Web dev', 'Blogs', 'Marketing', 'Hackathons', 'Writing', 'Podcasts', 'Others']
 
     const [resourceCategory, setResourceCategory] = useState('');
+    const [resourceUrl, setResourceUrl] = useState('');
+
     const [selectedTag, setSelectedTag] = useState('')
-    const { register, handleSubmit } = useForm();
+    const { handleSubmit } = useForm();
 
 
 
@@ -28,12 +30,11 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
 
 
     const addResource = (data) => {
-        const { resourceUrl } = data;
 
         postResource({ resourceCategory, resourceUrl });
         setTimeout(() => {
             window.location.reload()
-        }, 2000)
+        }, 4000)
 
     }
 
@@ -62,7 +63,7 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
 
 
                     <div className="flex flex-row flex-wrap  justify-center">
-                        {resources.data && resources.data.filter((res) => {
+                        {resources && resources.filter((res) => {
                             if (selectedTag === "") {
                                 return res;
                             } else if (res.category.toLowerCase().includes(selectedTag.toLowerCase())) {
@@ -71,7 +72,7 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
                             return 0;
                         }).map(res => {
                             return (
-                                <LinkPreview url={res.url}
+                                <LinkPreview url={res.resourceUrl}
                                     descriptionLength="40"
                                     className="md:w-52 w-full m-2 text-sm" height="220px"
                                     fallback={<div>{res.url}</div>}
@@ -102,10 +103,9 @@ const Resources = ({ authloading, resources, isAuthenticated, postResource, getA
                                 <form onSubmit={handleSubmit(addResource)}>
                                     <input
                                         required
-                                        {...register("resourceUrl")}
 
-                                        // onChange={(e) => setResourceUrl(e.target.value)}
-                                        placeholder="Share a resource url"
+                                        onChange={(e) => setResourceUrl(e.target.value)}
+                                        placeholder="Add a resource URL"
                                         className="text-xl bg-gray-50 border-2 w-full p-2 rounded" />
 
 

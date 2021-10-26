@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import editIcon from '../assets/icons/edit.svg'
-import {Link } from "react-router-dom"
-const UserProfile = () => {
+import { Link } from "react-router-dom"
+import { connect } from 'react-redux';
+import { getMakerProfile } from '../actions/profile'
+
+
+
+
+
+const UserProfile = ({ getMakerProfile, makerProfile, match }) => {
+
+    useEffect(() => {
+        getMakerProfile(match.params.username);
+        console.log(makerProfile)
+                console.log(match.params.username)
+
+
+    })
+
     return (
         <div>
             <div className="bg-pink-300 w-full h-24 p-4"></div>
@@ -33,10 +49,10 @@ const UserProfile = () => {
 
                 <div>
                     <Link to="/edit-profile">
-                    <button className="border flex items-center px-4 py-2 text-indigo-400 font-semibold hover:text-indigo-500 rounded-full bg-white transform -translate-y-5">
-                        <img src={editIcon} alt="edit" className="h-4 w-4 mr-2"/>
-                        Edit Profile
-                    </button>
+                        <button className="border flex items-center px-4 py-2 text-indigo-400 font-semibold hover:text-indigo-500 rounded-full bg-white transform -translate-y-5">
+                            <img src={editIcon} alt="edit" className="h-4 w-4 mr-2" />
+                            Edit Profile
+                        </button>
                     </Link>
                 </div>
 
@@ -66,4 +82,10 @@ const UserProfile = () => {
     );
 }
 
-export default UserProfile;
+const mapStateToProps = state => ({
+    makerProfile: state.profileReducer.makerProfile,
+    loading: state.profileReducer.loading,
+    isAuthenticated: state.authReducer.isAuthenticated,
+})
+
+export default connect(mapStateToProps, { getMakerProfile })(UserProfile);

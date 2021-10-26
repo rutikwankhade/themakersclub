@@ -4,12 +4,14 @@ import {
     EDIT_PROFILE_ERROR,
     UPDATE_POINTS,
     GET_TOP_MAKERS,
-    TOP_MAKERS_ERROR
+    TOP_MAKERS_ERROR,
+    GET_MAKER_PROFILE
 } from './types'
 
 
 
 //edit user profile
+//create maker profile
 
 export const editProfile = ({ bio, website, twitter, github, linkedin }) => async dispatch => {
 
@@ -89,5 +91,33 @@ export const getTopMakers = () => async dispatch => {
             payload: { msg: err }
         })
 
+    }
+}
+
+
+//GET MAKER PROFILE
+
+
+export const getMakerProfile = (username) => async dispatch => {
+
+    try {
+
+        const res = await axios.get(`https://themakersclubapp.herokuapp.com/api/profile/${username}`);
+
+        dispatch({
+            type: GET_MAKER_PROFILE,
+            payload: res.data
+        })
+
+    } catch (err) {
+        // dispatch({
+        //     type: DISCUSS_POST_ERROR,
+        //     payload: { msg: err }
+        // })
+
+         dispatch({
+            type: TOP_MAKERS_ERROR,
+            payload: { msg: err }
+        })
     }
 }
