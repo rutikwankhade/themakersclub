@@ -8,7 +8,7 @@ import { logout } from '../actions/auth'
 
 
 
-const Navbar = ({ isAuthenticated, loading, fullName, logout, currentUser }) => {
+const Navbar = ({ isAuthenticated, loading, fullName, logout }) => {
 
     
 
@@ -34,7 +34,7 @@ const Navbar = ({ isAuthenticated, loading, fullName, logout, currentUser }) => 
                             </div>
                             :
                             <div className="flex ml-auto mr-4 ">
-                                <Link to={`/profile/${currentUser._id}`} >
+                                <Link to={`/profile/`} >
 
                                     <div className="flex mx-2 border-2 px-2 py-1 rounded-full">
                                         <h1 className=" capitalize text-xl font-semibold mx-4 ">
@@ -66,7 +66,6 @@ const mapStateToProps = state => ({
     loading: state.authReducer.loading,
 
     fullName: state.authReducer.user && state.authReducer.user.name,
-    currentUser: state.authReducer.user && state.authReducer.user
 
 });
 
