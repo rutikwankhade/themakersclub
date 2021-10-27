@@ -4,7 +4,7 @@ import leaderboardImg from '../assets/images/leaderboard.png'
 
 import { connect } from 'react-redux';
 import { getTopMakers } from '../actions/profile'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton';
 
 
@@ -36,9 +36,9 @@ const LeaderBoard = ({ loading, getTopMakers, topMakers }) => {
                     {
                         topMakers.map((maker, index) => {
 
-                            return <Link to={`/profile/${maker._id}`}>
+                            return <div>
                                 {loading ? <Skeleton height={200} /> : <MakerCard maker={maker} rank={index + 1} />}
-                            </Link>
+                            </div>
                         })
                     }
 

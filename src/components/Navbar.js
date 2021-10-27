@@ -34,7 +34,7 @@ const Navbar = ({ isAuthenticated, loading, fullName, logout }) => {
                             </div>
                             :
                             <div className="flex ml-auto mr-4 ">
-                                <Link to={`/profile/`} >
+                                {/* <Link to={`/profile/`} > */}
 
                                     <div className="flex mx-2 border-2 px-2 py-1 rounded-full">
                                         <h1 className=" capitalize text-xl font-semibold mx-4 ">
@@ -45,7 +45,7 @@ const Navbar = ({ isAuthenticated, loading, fullName, logout }) => {
                                     </div>
 
 
-                                </Link>
+                                {/* </Link> */}
                                 <img
                                     onClick={() => logout()}
                                     src={logoutIcon} alt="logout" className="cursor-pointer hover:bg-red-100 rounded-full flex h-10 w-10 p-1" />
