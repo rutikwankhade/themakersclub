@@ -12,19 +12,19 @@ const Sidebar = () => {
 
 
 
-            <NavLink to="/showcase-feedback" className="pl-1" activeClassName="bg-purple-100 rounded" >
+            <NavLink to="/showcase-feedback" className="pl-1 hover:bg-purple-50 mb-2" activeClassName="bg-purple-100 rounded" >
                 <img src={rocketIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
             </NavLink>
 
-            <NavLink to="/discussions" className="pl-1" activeClassName="bg-purple-100 rounded" >
+            <NavLink to="/discussions" className="pl-1 hover:bg-purple-50 mb-2" activeClassName="bg-purple-100 rounded" >
                 <img src={discussIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
             </NavLink>
 
-            <NavLink to="/resources" className="pl-1" activeClassName="bg-purple-100 rounded" >
+            <NavLink to="/resources" className="pl-1 hover:bg-purple-50 mb-2" activeClassName="bg-purple-100 rounded" >
                 <img src={resourceIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
             </NavLink>
 
-            <NavLink to="/leaderboard" className="pl-1" activeClassName="bg-purple-100 rounded">
+            <NavLink to="/leaderboard" className="pl-1 hover:bg-purple-50 mb-2" activeClassName="bg-purple-100 rounded">
                 <img src={trophyIcon} alt="Home" className="w-14 h-14 m-2  p-2 rounded" />
             </NavLink>
 
