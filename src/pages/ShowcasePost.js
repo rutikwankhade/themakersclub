@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { updatePoints } from '../actions/profile'
 
 // import { formatRelative } from 'date-fns'
-
+// import placeholder from '../assets/images/placeholder.jpg'
 
 const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, showcasePost, addFeedback, match, updatePoints, points }) => {
 
@@ -75,9 +75,9 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                                 </a>
                             </div>
                             <p className="text-xl py-2">{showcasePost && showcasePost.desc}</p>
-                            <div className="p-2 my-2 border rounded shadow-sm">
-                                <img src={`https://capture-website-api.herokuapp.com/capture?url=${showcasePost && showcasePost.url}`} alt="screenshot" className=" my-2" />
-                            </div>
+                            {/* <div className="p-2 my-2 border rounded shadow-sm">
+                                <img src={`https://capture-website-api.herokuapp.com/capture?url=${showcasePost && showcasePost.url}` || placeholder} alt="screenshot" className=" my-2" />
+                            </div> */}
                             <span className="text-gray-400 ">{showcasePost && showcasePost.date}</span>
                         </div>
                     }

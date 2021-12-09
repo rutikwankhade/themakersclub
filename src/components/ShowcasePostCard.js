@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 
-const ShowcasePostcard = ({ post: { _id, title, url, user, name, desc } }) => {
+const ShowcasePostcard = ({ post: { _id, title, url, user, name, desc,feedbacks } }) => {
 
 
     return (
@@ -25,9 +25,23 @@ const ShowcasePostcard = ({ post: { _id, title, url, user, name, desc } }) => {
                         </span>
                     </div> */}
 
-                    <div className="p-2 w-1/3 my-2 border rounded shadow-sm">
+                    {/* <div className="p-2 w-1/3 my-2 border rounded shadow-sm">
                         <img src={`https://capture-website-api.herokuapp.com/capture?url=${url}`} alt="screenshot" className=" my-2" />
-                    </div>
+                    </div> */}
+
+                    <div className="ml-auto mr-2 ">
+
+                    {feedbacks.length ?
+                        <div className="flex flex-col border border-t-4 p-2 rounded items-center">
+                            <span className="text-2xl font-semibold "> {feedbacks.length} </span>
+                            <span className="font-semibold text-sm text-gray-500">Feedbacks</span>
+                        </div>
+                        :
+                        <div className=" border  rounded items-center p-1  bg-purple-400 hover:bg-purple-500 text-white">
+                            <button className="font-semibold text-sm ">Give Feedback</button>
+                        </div>
+                    }
+                                        </div>
 
 
                 </div>

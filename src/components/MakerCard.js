@@ -2,7 +2,7 @@ import React from 'react';
 const MakerCard = ({maker, rank}) => {
     return (
         <div>
-            <div className="bg-white cursor-pointer hover:bg-purple-50 border p-6 rounded flex flex-row items-center">
+            <div className="bg-white border p-6 rounded flex flex-row items-center">
                 <span className="text-3xl  font-bold "> #{ rank}</span>
 
                 <div className="flex items-center ml-6 mr-auto">
