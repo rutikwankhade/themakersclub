@@ -22,6 +22,14 @@ const Login = ({ login, isAuthenticated,loading }) => {
         console.log(data);
     }
 
+    const handleGuestLogin = () => {
+        const guestEmail = "mark@gmail.com"
+        const guestPassword="123456"
+         
+        login(guestEmail, guestPassword);
+        // console.log(data);
+    }
+
   
    
 if (isAuthenticated) {
@@ -60,11 +68,18 @@ if (isAuthenticated) {
                                     {...register("password")}
                                 />
 
+                                    
 
                                 <button
                                     type="submit"
-                                    className="flex text-lg w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">
+                                    className="flex text-lg w-full justify-center m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">
                                     Login {loading?<Loader />:<span></span>}
+                                </button>
+
+                                 <button
+                                    onClick={()=>handleGuestLogin()}
+                                    className="flex text-lg w-full justify-center m-2 bg-gray-600 hover:bg-gray-700 font-semibold text-white px-6 py-2 rounded">
+                                    Continue as a Guest {loading?<Loader />:<span></span>}
                                 </button>
                                 <Link to="/signup" className="focus:outline-none hover:underline text-center text-purple-400 font-semibold mx-4">
                                     Don't have an account? Register

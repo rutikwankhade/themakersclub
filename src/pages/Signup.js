@@ -5,12 +5,12 @@ import { Link, Redirect } from 'react-router-dom'
 
 import joinImg from '../assets/images/join.png'
 import { connect } from 'react-redux'
-import { register as signup } from '../actions/auth';
+import { register as signup,login } from '../actions/auth';
 import { editProfile } from '../actions/profile';
 
 
 
-const Signup = ({ signup, isAuthenticated, editProfile }) => {
+const Signup = ({ signup,login, isAuthenticated, editProfile }) => {
 
     const [error, setError] = useState('')
     const { register, handleSubmit } = useForm();
@@ -37,6 +37,14 @@ const Signup = ({ signup, isAuthenticated, editProfile }) => {
         }
         editProfile(profile);
 
+    }
+
+       const handleGuestLogin = () => {
+        const guestEmail = "mark@gmail.com"
+        const guestPassword="123456"
+         
+        login(guestEmail, guestPassword);
+        // console.log(data);
     }
 
     if (isAuthenticated) {
@@ -91,7 +99,15 @@ const Signup = ({ signup, isAuthenticated, editProfile }) => {
                             />
                             <button
                                 type="submit"
-                                className="text-lg  w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Sign up</button>
+                                className="text-lg  w-full m-2 bg-purple-400 hover:bg-purple-500 font-semibold text-white px-6 py-2 rounded">Sign up
+                            </button>
+
+                            <button
+                                    onClick={()=>handleGuestLogin()}
+                                    className="flex text-lg w-full justify-center m-2 bg-gray-600 hover:bg-gray-700 font-semibold text-white px-6 py-2 rounded">
+                                    Continue as a Guest 
+                            </button>
+                            
                             <Link to="/login" className="hover:underline focus:outline-none text-center text-purple-400 font-semibold mx-4">
                                 Already a user? Login
                             </Link>
@@ -117,5 +133,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { signup, editProfile }
+    { signup,login, editProfile }
 )(Signup);
