@@ -78,7 +78,7 @@ const ShowcasePost = ({ loading, authLoading, isAuthenticated, getShowcasePost, 
                             {/* <div className="p-2 my-2 border rounded shadow-sm">
                                 <img src={`https://capture-website-api.herokuapp.com/capture?url=${showcasePost && showcasePost.url}` || placeholder} alt="screenshot" className=" my-2" />
                             </div> */}
-                            <span className="text-gray-400 ">{showcasePost && showcasePost.date}</span>
+                            <span className="text-gray-400 ">{showcasePost && new Date(showcasePost.date).toLocaleDateString("en-US",{  year: 'numeric', month: 'long', day: 'numeric' })}</span>
                         </div>
                     }
                 </div>

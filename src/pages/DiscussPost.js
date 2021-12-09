@@ -9,12 +9,13 @@ import { useForm } from 'react-hook-form';
 import { updatePoints } from '../actions/profile'
 
 
-// import { formatRelative } from 'date-fns'
+// import { formatDistance,format } from 'date-fns'
 
 
 const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDiscussComment, isAuthenticated, match, updatePoints, points }) => {
 
     const { register, handleSubmit } = useForm();
+    // const today = new Date();
 
 
     useEffect(() => {
@@ -61,10 +62,10 @@ const DiscussPost = ({ authLoading, discussPost, loading, getDiscussPost, addDis
                             <div className="flex my-4">
                                 <img src={discussPost && discussPost.avatar} alt="profile" className="h-8 w-8 rounded-full" />
                                 <span className="text-xl text-gray-500 italic capitalize mx-2 ">
-                                    {`Posted by ${discussPost && discussPost.name}`}
+                                    {`By ${discussPost && discussPost.name}`}
                                 </span>
                             </div>
-                            <span className="text-gray-400 ml-auto mr-4">{discussPost && discussPost.date}</span>
+                            <span className="text-gray-400 ml-auto mr-4">Posted on {discussPost && new Date(discussPost.date).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' })}</span>
                         </div>
 
 
